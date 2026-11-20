@@ -1,0 +1,2899 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" id="metaThemeColor" content="#f6f4f3">
+  <title>Japonês 2027 — Espaço Pessoal de Estudos</title>
+
+  <!-- Fontes modernas estilo Google Gemini com fallback nativo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* =========================================================================
+       TOKENS DE DESIGN GOOGLE GEMINI — PALETA VERMELHO CONTEMPORÂNEO
+       ========================================================================= */
+    :root {
+      --bg-main: #ffffff;
+      --bg-sidebar: #f6f4f3;
+      --bg-card: #f6f4f3;
+      --bg-card-solid: #ffffff;
+      --bg-elevated: #ece8e6;
+      --bg-input: #ffffff;
+      --border: #e5e2e0;
+      --border-strong: #cfc9c5;
+      --text-primary: #1f1f1f;
+      --text-secondary: #4a4d50;
+      --text-muted: #5f6368;
+      --pill-active-bg: #fce8e6;
+      --pill-active-text: #8c1d18;
+      --pill-hover-bg: #ebe7e5;
+      --cta-bg: #ede9e7;
+      --cta-hover: #e3ddda;
+      --accent: #b93b37;
+      --accent-hover: #9c2d29;
+      --accent-soft: #fce8e6;
+      --on-accent: #ffffff;
+      --danger: #b93b37;
+      --danger-soft: #fce8e6;
+      --success: #1e8e3e;
+      --success-soft: #e6f4ea;
+      --warn: #b06000;
+      --warn-soft: #fef7e0;
+      --grad-1: #b93b37;
+      --grad-2: #d9534f;
+      --grad-3: #e07a5f;
+      --shadow-sm: 0 1px 3px rgba(31, 31, 31, 0.04), 0 1px 2px rgba(31, 31, 31, 0.02);
+      --shadow-md: 0 8px 28px rgba(31, 31, 31, 0.07);
+      --shadow-lg: 0 20px 56px rgba(31, 31, 31, 0.16);
+      --gemini-gradient: linear-gradient(135deg, #b93b37 0%, #d9534f 52%, #e07a5f 100%);
+      color-scheme: light;
+    }
+
+    body.dark {
+      --bg-main: #131314;
+      --bg-sidebar: #1e1f20;
+      --bg-card: #1e1f20;
+      --bg-card-solid: #1e1f20;
+      --bg-elevated: #28292a;
+      --bg-input: #131314;
+      --border: #333537;
+      --border-strong: #46484a;
+      --text-primary: #e3e3e3;
+      --text-secondary: #c4c7c5;
+      --text-muted: #9aa0a6;
+      --pill-active-bg: #5c1f1c;
+      --pill-active-text: #fad2cf;
+      --pill-hover-bg: #28292a;
+      --cta-bg: #28292a;
+      --cta-hover: #333537;
+      --accent: #f28b82;
+      --accent-hover: #f6aea9;
+      --accent-soft: #5c1f1c;
+      --on-accent: #2c0b09;
+      --danger: #f28b82;
+      --danger-soft: #44211f;
+      --success: #81c995;
+      --success-soft: #183222;
+      --warn: #fdd663;
+      --warn-soft: #362c12;
+      --grad-1: #f28b82;
+      --grad-2: #e57368;
+      --grad-3: #ffab91;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.65);
+      --gemini-gradient: linear-gradient(135deg, #f28b82 0%, #e57368 52%, #ffab91 100%);
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.22s ease, color 0.22s ease;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* Gradiente assinatura Google Gemini */
+    .gemini-text {
+      background: var(--gemini-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gemini-bar {
+      background: var(--gemini-gradient);
+    }
+
+    /* Cards & Superfícies */
+    .g-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .g-card-solid {
+      background-color: var(--bg-card-solid);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Botões em pílula estilo Gemini */
+    .g-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 0.56rem 1.05rem;
+      border: 1px solid var(--border);
+      background-color: var(--bg-card-solid);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.12s ease, color 0.18s ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .g-btn:hover {
+      background-color: var(--bg-elevated);
+      border-color: var(--border-strong);
+    }
+
+    .g-btn:active {
+      transform: scale(0.98);
+    }
+
+    .g-btn-primary {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+      font-weight: 600;
+    }
+
+    .g-btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .g-btn-soft {
+      background-color: var(--pill-active-bg);
+      border-color: transparent;
+      color: var(--pill-active-text);
+      font-weight: 600;
+    }
+
+    .g-btn-soft:hover {
+      filter: brightness(0.96);
+    }
+
+    .g-btn-danger {
+      background-color: var(--danger-soft);
+      border-color: transparent;
+      color: var(--danger);
+    }
+
+    .g-btn-danger:hover {
+      filter: brightness(0.95);
+    }
+
+    .g-btn-icon {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: 9999px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+    }
+
+    .g-btn-icon:hover {
+      background-color: var(--bg-elevated);
+      color: var(--text-primary);
+      border-color: transparent;
+    }
+
+    /* Inputs e Campos */
+    .g-input, .g-select, .g-textarea {
+      width: 100%;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+    }
+
+    .g-input, .g-select {
+      border-radius: 14px;
+      padding: 0.62rem 0.95rem;
+    }
+
+    .g-input-pill, .g-select-pill {
+      border-radius: 9999px;
+      padding: 0.56rem 1.05rem;
+    }
+
+    .g-textarea {
+      border-radius: 16px;
+      padding: 0.72rem 0.95rem;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .g-input:focus, .g-select:focus, .g-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+
+    /* Navegação Sidebar estilo Gemini */
+    .nav-pill {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.68rem 1rem;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease;
+      text-align: left;
+    }
+
+    .nav-pill:hover {
+      background-color: var(--pill-hover-bg);
+      color: var(--text-primary);
+    }
+
+    .nav-pill.active {
+      background-color: var(--pill-active-bg);
+      color: var(--pill-active-text);
+      font-weight: 600;
+    }
+
+    /* Pílulas de filtro / abas */
+    .filter-pill {
+      padding: 0.44rem 0.95rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--bg-card-solid);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .filter-pill:hover {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
+
+    .filter-pill.active {
+      background: var(--pill-active-bg);
+      color: var(--pill-active-text);
+      border-color: transparent;
+      font-weight: 600;
+    }
+
+    /* Badges */
+    .g-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.22rem 0.68rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background-color: var(--bg-elevated);
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .g-badge-accent {
+      background-color: var(--pill-active-bg);
+      color: var(--pill-active-text);
+    }
+
+    .g-badge-success {
+      background-color: var(--success-soft);
+      color: var(--success);
+    }
+
+    .g-badge-danger {
+      background-color: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .g-badge-warn {
+      background-color: var(--warn-soft);
+      color: var(--warn);
+    }
+
+    /* Calendário */
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .cal-cell {
+      min-height: 84px;
+      border-radius: 16px;
+      padding: 7px;
+      background-color: var(--bg-card-solid);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, transform 0.12s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      overflow: hidden;
+    }
+
+    .cal-cell:hover {
+      border-color: var(--accent);
+      background-color: var(--bg-elevated);
+    }
+
+    .cal-cell.is-dim {
+      opacity: 0.42;
+    }
+
+    .cal-cell.is-today {
+      border-color: var(--accent);
+      background-color: color-mix(in srgb, var(--pill-active-bg) 35%, var(--bg-card-solid));
+    }
+
+    .cal-cell.is-selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+
+    @media (max-width: 640px) {
+      .cal-cell {
+        min-height: 60px;
+        padding: 4px;
+        border-radius: 12px;
+      }
+      .cal-grid {
+        gap: 4px;
+      }
+    }
+
+    /* Modais & Drawers */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.48);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 60;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-panel {
+      background-color: var(--bg-card-solid);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      width: min(680px, 100%);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      animation: modalIn 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    @keyframes modalIn {
+      from { transform: translateY(12px) scale(0.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    /* Toasts */
+    #toastContainer {
+      position: fixed;
+      right: 20px;
+      bottom: 24px;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: min(360px, calc(100vw - 32px));
+      pointer-events: none;
+    }
+
+    @media (max-width: 767px) {
+      #toastContainer {
+        bottom: 84px;
+        right: 16px;
+      }
+    }
+
+    .toast-item {
+      pointer-events: auto;
+      background-color: var(--bg-card-solid);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px 16px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      animation: toastSlide 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    @keyframes toastSlide {
+      from { transform: translateY(14px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Scrollbar discreta */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-strong);
+      border-radius: 9999px;
+    }
+
+    /* Active Recall transição */
+    .recall-reveal {
+      animation: fadeUp 0.22s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Barra de navegação mobile */
+    .mobile-bottom-nav {
+      padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- =========================================================================
+       LAYOUT PRINCIPAL (SIDEBAR ESTILO GEMINI + ÁREA DE CONTEÚDO)
+       ========================================================================= -->
+  <div class="flex min-h-screen w-full">
+
+    <!-- Backdrop do Drawer Mobile -->
+    <div id="drawerBackdrop" class="fixed inset-0 bg-black/45 backdrop-blur-[2px] z-40 hidden md:hidden"></div>
+
+    <!-- Sidebar Estilo Google Gemini -->
+    <aside id="sidebar"
+      class="fixed md:sticky top-0 left-0 z-50 h-screen w-[276px] shrink-0 flex flex-col justify-between p-4 border-r transition-transform duration-200 -translate-x-full md:translate-x-0"
+      style="background-color: var(--bg-sidebar); border-color: var(--border);">
+
+      <div class="flex flex-col gap-5 overflow-y-auto pr-0.5">
+        <!-- Marca & Botão Fechar (Mobile) -->
+        <div class="flex items-center justify-between px-2 pt-1">
+          <button type="button" data-go="dashboard" class="flex items-center gap-2.5 text-left group cursor-pointer bg-transparent border-0 p-0">
+            <!-- Ícone Sparkle Gemini SVG (gradiente vermelho/coral) -->
+            <span class="w-9 h-9 rounded-2xl flex items-center justify-center shrink-0" style="background-color: var(--bg-card-solid); border: 1px solid var(--border);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="gemGradBrand" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color: var(--grad-1)"/>
+                    <stop offset="52%" style="stop-color: var(--grad-2)"/>
+                    <stop offset="100%" style="stop-color: var(--grad-3)"/>
+                  </linearGradient>
+                </defs>
+                <path d="M12 2C12.3 7.1 16.9 11.7 22 12C16.9 12.3 12.3 16.9 12 22C11.7 16.9 7.1 12.3 2 12C7.1 11.7 11.7 7.1 12 2Z" fill="url(#gemGradBrand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="font-display font-bold text-[15px] tracking-tight leading-tight" style="color: var(--text-primary);">Japonês 2027</div>
+              <div class="text-[11px] font-medium" style="color: var(--text-muted);">Espaço de estudos</div>
+            </div>
+          </button>
+
+          <button id="closeDrawerBtn" type="button" class="g-btn-icon md:hidden flex items-center justify-center" aria-label="Fechar menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Botão Flutuante Estilo "Nova Conversa" do Gemini -->
+        <div class="px-1">
+          <button id="sidebarNewStudy" type="button"
+            class="w-full flex items-center gap-3 px-4 py-3 rounded-full text-sm font-semibold cursor-pointer border-0 transition-all shadow-sm hover:shadow"
+            style="background-color: var(--cta-bg); color: var(--text-primary);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            <span>Novo estudo</span>
+          </button>
+        </div>
+
+        <!-- Menu Principal em Pílulas -->
+        <nav id="sidebarNav" class="flex flex-col gap-1" aria-label="Navegação principal">
+          <button type="button" class="nav-pill active" data-page="dashboard">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h12a1 1 0 001-1V9.5"/></svg>
+            <span class="flex-1">Visão geral</span>
+          </button>
+
+          <button type="button" class="nav-pill" data-page="planner">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <span class="flex-1">Cronograma</span>
+          </button>
+
+          <button type="button" class="nav-pill" data-page="records">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><path d="M8 7h8M8 11h6"/></svg>
+            <span class="flex-1">Registros</span>
+          </button>
+
+          <button type="button" class="nav-pill" data-page="reviews">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3.1-6.8"/><path d="M21 3v6h-6"/></svg>
+            <span class="flex-1">Revisões</span>
+            <span id="navReviewBadge" class="hidden text-[11px] font-bold px-2 py-0.5 rounded-full" style="background-color: var(--accent); color: var(--on-accent);">0</span>
+          </button>
+
+          <button type="button" class="nav-pill" data-page="library">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            <span class="flex-1">Biblioteca</span>
+          </button>
+
+          <button type="button" class="nav-pill" data-page="fluency">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span class="flex-1">Fluency Academy</span>
+          </button>
+
+          <button type="button" class="nav-pill" data-page="stats">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+            <span class="flex-1">Estatísticas</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Rodapé da Sidebar -->
+      <div class="pt-4 flex flex-col gap-2.5">
+        <div class="rounded-2xl p-3.5 text-xs leading-relaxed" style="background-color: var(--bg-card-solid); border: 1px solid var(--border); color: var(--text-muted);">
+          <div class="font-semibold mb-1" style="color: var(--text-primary);">一歩ずつ · um passo de cada vez</div>
+          Seu desempenho real orienta sua jornada até o JLPT N2 e N1.
+        </div>
+
+        <button id="backupSideBtn" type="button" class="g-btn w-full justify-center">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Exportar backup JSON</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Área Principal -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+      <!-- Barra Superior Limpa -->
+      <header class="sticky top-0 z-30 backdrop-blur-md border-b" style="background-color: color-mix(in srgb, var(--bg-main) 88%, transparent); border-color: var(--border);">
+        <div class="max-w-[1260px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <button id="openDrawerBtn" type="button" class="g-btn-icon md:hidden flex items-center justify-center shrink-0" aria-label="Abrir menu">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <div class="min-w-0">
+              <div id="pageEyebrow" class="text-[11px] font-semibold uppercase tracking-wider truncate" style="color: var(--text-muted);">Japonês 2027</div>
+              <h1 id="pageTitle" class="font-display text-lg sm:text-xl font-semibold tracking-tight truncate leading-tight" style="color: var(--text-primary);">Visão geral</h1>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <button id="headerNewStudy" type="button" class="g-btn g-btn-soft hidden sm:inline-flex">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              <span>Novo estudo</span>
+            </button>
+
+            <button id="importBtn" type="button" class="g-btn" title="Importar backup JSON">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span class="hidden sm:inline">Importar</span>
+            </button>
+
+            <button id="backupTopBtn" type="button" class="g-btn-icon flex items-center justify-center" title="Exportar backup JSON" aria-label="Exportar backup JSON">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </button>
+
+            <button id="themeBtn" type="button" class="g-btn-icon flex items-center justify-center" title="Alternar tema claro/escuro" aria-label="Alternar tema">
+              <span id="themeIcon"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Conteúdo Dinâmico -->
+      <main id="content" class="flex-1 w-full max-w-[1260px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-28 md:pb-12"></main>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       NAVEGAÇÃO MOBILE INFERIOR + FAB "+ NOVO ESTUDO"
+       ========================================================================= -->
+  <button id="mobileFab" type="button" aria-label="Adicionar novo estudo"
+    class="md:hidden fixed right-4 bottom-[78px] z-30 w-13 h-13 px-4 py-3.5 rounded-full shadow-lg flex items-center gap-2 font-semibold text-sm border-0 cursor-pointer"
+    style="background: var(--gemini-gradient); color: var(--on-accent);">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+    <span>Estudo</span>
+  </button>
+
+  <nav id="mobileBottomNav" class="md:hidden fixed bottom-0 left-0 right-0 z-30 border-t mobile-bottom-nav px-1 pt-1.5"
+    style="background-color: var(--bg-sidebar); border-color: var(--border);" aria-label="Navegação mobile">
+    <div class="grid grid-cols-5 gap-1">
+      <button type="button" data-page="dashboard" class="mob-nav-btn flex flex-col items-center justify-center py-1.5 rounded-2xl text-[10px] font-medium gap-1 border-0 bg-transparent cursor-pointer" style="color: var(--text-secondary);">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h12a1 1 0 001-1V9.5"/></svg>
+        <span>Início</span>
+      </button>
+      <button type="button" data-page="planner" class="mob-nav-btn flex flex-col items-center justify-center py-1.5 rounded-2xl text-[10px] font-medium gap-1 border-0 bg-transparent cursor-pointer" style="color: var(--text-secondary);">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span>Agenda</span>
+      </button>
+      <button type="button" data-page="records" class="mob-nav-btn flex flex-col items-center justify-center py-1.5 rounded-2xl text-[10px] font-medium gap-1 border-0 bg-transparent cursor-pointer" style="color: var(--text-secondary);">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        <span>Registros</span>
+      </button>
+      <button type="button" data-page="reviews" class="mob-nav-btn relative flex flex-col items-center justify-center py-1.5 rounded-2xl text-[10px] font-medium gap-1 border-0 bg-transparent cursor-pointer" style="color: var(--text-secondary);">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3.1-6.8"/><path d="M21 3v6h-6"/></svg>
+        <span>Revisões</span>
+        <span id="mobReviewBadge" class="hidden absolute top-1 right-3 min-w-[16px] h-4 px-1 rounded-full text-[9px] font-bold flex items-center justify-center" style="background-color: var(--accent); color: var(--on-accent);">0</span>
+      </button>
+      <button type="button" id="mobileMoreBtn" class="flex flex-col items-center justify-center py-1.5 rounded-2xl text-[10px] font-medium gap-1 border-0 bg-transparent cursor-pointer" style="color: var(--text-secondary);">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/><circle cx="5" cy="12" r="1.5"/></svg>
+        <span>Mais</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       MODAL PRINCIPAL DE CADASTRO / EDIÇÃO
+       ========================================================================= -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <section class="modal-panel">
+      <div class="flex items-center justify-between px-6 py-4 border-b" style="border-color: var(--border);">
+        <h2 id="modalTitle" class="font-display text-lg font-semibold m-0" style="color: var(--text-primary);">Novo item</h2>
+        <button id="modalCloseBtn" type="button" class="g-btn-icon flex items-center justify-center" aria-label="Fechar janela">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="modalForm" class="flex flex-col flex-1 overflow-hidden">
+        <div id="modalBody" class="p-6 overflow-y-auto flex-1"></div>
+
+        <div class="flex items-center justify-between gap-3 px-6 py-4 border-t" style="border-color: var(--border); background-color: var(--bg-card);">
+          <button id="modalDeleteBtn" type="button" class="g-btn g-btn-danger hidden">Excluir</button>
+          <div class="flex items-center gap-2 ml-auto">
+            <button id="modalCancelBtn" type="button" class="g-btn">Cancelar</button>
+            <button id="modalSubmitBtn" type="submit" class="g-btn g-btn-primary">Salvar</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- =========================================================================
+       MODAL DE CONFIRMAÇÃO ELEGANTE (SEM confirm() NATIVO)
+       ========================================================================= -->
+  <div id="confirmBackdrop" class="modal-backdrop" style="z-index: 75;" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <section class="modal-panel" style="width: min(440px, 100%);">
+      <div class="p-6">
+        <h3 id="confirmTitle" class="font-display text-lg font-semibold mb-2" style="color: var(--text-primary);">Confirmar ação</h3>
+        <p id="confirmMessage" class="text-sm leading-relaxed m-0" style="color: var(--text-secondary);"></p>
+      </div>
+      <div class="flex items-center justify-end gap-2 px-6 py-4 border-t" style="border-color: var(--border); background-color: var(--bg-card);">
+        <button id="confirmCancelBtn" type="button" class="g-btn">Cancelar</button>
+        <button id="confirmOkBtn" type="button" class="g-btn g-btn-primary">Confirmar</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Input oculto para importação de JSON -->
+  <input type="file" id="importFileInput" accept="application/json,.json" class="hidden">
+
+  <!-- Container de Notificações Toast -->
+  <div id="toastContainer" aria-live="polite"></div>
+
+  <!-- =========================================================================
+       LÓGICA DA APLICAÇÃO (MODULAR, SEM DEPENDÊNCIAS EXTERNAS DE ESTADO)
+       ========================================================================= -->
+  <script>
+  (() => {
+    'use strict';
+
+    /* -----------------------------------------------------------------------
+       1. UTILITÁRIOS DE DATA (LOCAL ISO - CORRIGE BUG UTC APÓS 21H) E SEGURANÇA
+       ----------------------------------------------------------------------- */
+    const STORAGE_KEY = 'jp2027_data';
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+    /** Converte Date para YYYY-MM-DD usando o fuso horário LOCAL do usuário */
+    function toLocalISO(date = new Date()) {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    /** Converte YYYY-MM-DD em Date local (evita deslocamento UTC) */
+    function parseLocalISO(iso) {
+      if (!iso || typeof iso !== 'string') return null;
+      const parts = iso.split('-').map(Number);
+      if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+      return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    /** Adiciona N dias a uma data YYYY-MM-DD mantendo fuso local */
+    function addDaysISO(iso, days) {
+      const d = parseLocalISO(iso) || new Date();
+      d.setDate(d.getDate() + days);
+      return toLocalISO(d);
+    }
+
+    /** Formata YYYY-MM-DD para DD/MM/AAAA */
+    function formatBR(iso) {
+      const d = parseLocalISO(iso);
+      if (!d) return iso || 'Sem data';
+      return d.toLocaleDateString('pt-BR');
+    }
+
+    const today = () => toLocalISO(new Date());
+
+    const uid = () => {
+      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+        return crypto.randomUUID().slice(0, 12);
+      }
+      return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    };
+
+    /** Escapa HTML prevenindo XSS */
+    const esc = (str) => String(str ?? '').replace(/[&<>"']/g, (ch) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[ch]));
+
+    /** Valida e normaliza URLs de forma segura (bloqueia javascript:, adiciona https://) */
+    function safeLink(raw) {
+      if (!raw || typeof raw !== 'string') return null;
+      const trimmed = raw.trim();
+      if (!trimmed) return null;
+      if (/^(javascript|data|vbscript|file):/i.test(trimmed)) return null;
+
+      let candidate = trimmed;
+      if (!/^https?:\/\//i.test(candidate)) {
+        // Aceita domínios sem protocolo, desde que pareçam endereço web válido
+        if (/\s/.test(candidate) || !candidate.includes('.')) return null;
+        candidate = 'https://' + candidate;
+      }
+
+      try {
+        const u = new URL(candidate);
+        if (u.protocol !== 'http:' && u.protocol !== 'https:') return null;
+        if (!u.hostname || !u.hostname.includes('.')) return null;
+        return u.href;
+      } catch {
+        return null;
+      }
+    }
+
+    /** Arredondamento seguro para horas (corrige erros de ponto flutuante) */
+    function roundHours(val) {
+      return Math.round((Number(val) || 0) * 100) / 100;
+    }
+
+    function formatHours(val) {
+      const n = roundHours(val);
+      return n.toLocaleString('pt-BR', { maximumFractionDigits: 2 });
+    }
+
+    /* -----------------------------------------------------------------------
+       2. DADOS PADRÃO E MIGRAÇÃO SEGURA DO LOCALSTORAGE ('jp2027_data')
+       ----------------------------------------------------------------------- */
+    const DEFAULT_RESOURCES = [
+      ['Jisho', 'Dicionário japonês–inglês com pesquisa de kanji e radicais', 'Dicionário', 'Todos', 'https://jisho.org/'],
+      ['Anki', 'Sistema de cartões de repetição espaçada', 'Ferramenta', 'Todos', 'https://apps.ankiweb.net/'],
+      ['Gramática', 'Documento pessoal de anotações de gramática', 'Documento', 'Todos', 'https://docs.google.com/document/d/1-PvqBZxUzCkxBRw8PxUD4IlDrewP0j1B8EFxvKCBcXc/edit'],
+      ['Japarrot', 'Canal de aprendizagem de japonês', 'Vídeo', 'Todos', 'https://www.youtube.com/@Japarrot_LetsLearnJP'],
+      ['Tanaka-san', 'Conteúdo em japonês no YouTube', 'Vídeo', 'Todos', 'https://www.youtube.com/@japanese_tanakasan'],
+      ['Peppa Pig Japanese', 'Conteúdo audiovisual em japonês para imersão', 'Vídeo', 'Todos', 'https://www.youtube.com/@PeppaPigJapaneseOfficial'],
+      ['Hana', 'Canal de conteúdo japonês', 'Vídeo', 'Todos', 'https://www.youtube.com/@hanaaa.1005'],
+      ['Sakiiii', 'Canal de conteúdo japonês', 'Vídeo', 'Todos', 'https://www.youtube.com/@Sakiiii00']
+    ];
+
+    function buildDefaults() {
+      return {
+        tasks: [],
+        records: [],
+        reviews: [],
+        resources: DEFAULT_RESOURCES.map(([title, description, category, level, url]) => ({
+          id: uid(), title, description, category, level, url
+        })),
+        modules: Array.from({ length: 24 }, (_, idx) => ({
+          id: idx + 1,
+          title: '',
+          status: 'Não iniciado',
+          lessons: '',
+          notes: '',
+          questions: '',
+          date: ''
+        })),
+        settings: {
+          theme: 'light',
+          currentLevel: 'Iniciante',
+          targetLevel: 'N2',
+          targetLabel: 'dez/2027'
+        }
+      };
+    }
+
+    /** Migra e saneia dados existentes sem perder histórico do usuário */
+    function migrateData(raw) {
+      const base = buildDefaults();
+      if (!raw || typeof raw !== 'object') return base;
+
+      const merged = {
+        tasks: Array.isArray(raw.tasks) ? raw.tasks.map((t) => ({
+          id: t.id || uid(),
+          title: String(t.title || ''),
+          description: String(t.description || ''),
+          category: t.category || 'Estudo',
+          level: t.level || 'N5',
+          date: t.date || today(),
+          status: t.status || 'Planejada',
+          url: String(t.url || ''),
+          notes: String(t.notes || '')
+        })) : [],
+
+        records: Array.isArray(raw.records) ? raw.records.map((r) => ({
+          id: r.id || uid(),
+          title: String(r.title || ''),
+          date: r.date || today(),
+          category: r.category || 'Gramática',
+          level: r.level || 'N5',
+          hours: roundHours(r.hours),
+          content: String(r.content || ''),
+          examples: String(r.examples || ''),
+          translations: String(r.translations || ''),
+          links: String(r.links || ''),
+          difficulties: String(r.difficulties || ''),
+          rating: r.rating || 'Em desenvolvimento'
+        })) : [],
+
+        reviews: Array.isArray(raw.reviews) ? raw.reviews.map((rv) => ({
+          id: rv.id || uid(),
+          sourceId: rv.sourceId || null,
+          title: String(rv.title || ''),
+          category: rv.category || 'Gramática',
+          level: rv.level || 'N5',
+          content: String(rv.content || ''),
+          created: rv.created || today(),
+          next: rv.next || today(),
+          interval: Number(rv.interval) || 0,
+          difficulty: String(rv.difficulty || ''),
+          history: Array.isArray(rv.history) ? rv.history : []
+        })) : [],
+
+        resources: Array.isArray(raw.resources) ? raw.resources.map((res) => ({
+          id: res.id || uid(),
+          title: String(res.title || ''),
+          description: String(res.description || ''),
+          category: res.category || 'Site',
+          level: res.level || 'Todos',
+          url: String(res.url || '')
+        })) : base.resources,
+
+        modules: Array.from({ length: 24 }, (_, idx) => {
+          const id = idx + 1;
+          const existing = Array.isArray(raw.modules) ? raw.modules.find((m) => Number(m.id) === id) : null;
+          return {
+            id,
+            title: String(existing?.title || ''),
+            status: ['Não iniciado', 'Em andamento', 'Concluído'].includes(existing?.status) ? existing.status : 'Não iniciado',
+            lessons: String(existing?.lessons || ''),
+            notes: String(existing?.notes || ''),
+            questions: String(existing?.questions || ''),
+            date: String(existing?.date || '')
+          };
+        }),
+
+        settings: {
+          ...base.settings,
+          ...(raw.settings && typeof raw.settings === 'object' ? raw.settings : {})
+        }
+      };
+
+      return merged;
+    }
+
+    function loadDB() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return buildDefaults();
+        return migrateData(JSON.parse(raw));
+      } catch {
+        return buildDefaults();
+      }
+    }
+
+    let db = loadDB();
+
+    function save() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+      } catch {
+        showToast('Não foi possível salvar no armazenamento local.', 'error');
+      }
+      updateReviewBadges();
+    }
+
+    /* -----------------------------------------------------------------------
+       3. ESTADO DE INTERFACE (UI STATE)
+       ----------------------------------------------------------------------- */
+    const nowInit = new Date();
+    const state = {
+      page: 'dashboard',
+      // Sempre ancorado no dia 1 para evitar bug do dia 29-31 ao navegar meses
+      calDate: new Date(nowInit.getFullYear(), nowInit.getMonth(), 1),
+      selectedDay: null, // YYYY-MM-DD quando usuário clica em um dia no calendário
+      plannerPeriod: 'all', // all | day | week | month | quarter | year
+      plannerSearch: '',
+      plannerStatus: '',
+      plannerLevel: '',
+      recordSearch: '',
+      recordCat: '',
+      recordLevel: '',
+      reviewSearch: '',
+      libSearch: '',
+      libCat: '',
+      libLevel: '',
+      fluencyFilter: 'all',
+      fluencySearch: '',
+      revealedReviews: new Set(),
+      modalType: null,
+      editingId: null,
+      confirmResolver: null
+    };
+
+    const PAGE_META = {
+      dashboard: { title: 'Visão geral', eyebrow: 'Japonês 2027 · Painel pessoal' },
+      planner: { title: 'Cronograma', eyebrow: 'Planejamento progressivo' },
+      records: { title: 'Registros de estudo', eyebrow: 'Diário de aprendizagem' },
+      reviews: { title: 'Revisões de hoje', eyebrow: 'Repetição espaçada · Active Recall' },
+      library: { title: 'Biblioteca', eyebrow: 'Links, dicionários e arquivos' },
+      fluency: { title: 'Fluency Academy', eyebrow: '24 módulos editáveis' },
+      stats: { title: 'Estatísticas', eyebrow: 'Indicadores reais de estudo' }
+    };
+
+    /* -----------------------------------------------------------------------
+       4. TOASTS E CONFIRMAÇÃO CUSTOMIZADA (ZERO alert/confirm/prompt)
+       ----------------------------------------------------------------------- */
+    function showToast(message, type = 'info') {
+      const container = $('#toastContainer');
+      const el = document.createElement('div');
+      el.className = 'toast-item';
+
+      const colorMap = {
+        success: 'var(--success)',
+        error: 'var(--danger)',
+        warn: 'var(--warn)',
+        info: 'var(--accent)'
+      };
+      const iconMap = {
+        success: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+        error: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>',
+        warn: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+        info: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+      };
+
+      el.innerHTML = `<span class="shrink-0 flex" style="color:${colorMap[type] || colorMap.info}">${iconMap[type] || iconMap.info}</span><span class="flex-1">${esc(message)}</span>`;
+      container.appendChild(el);
+
+      setTimeout(() => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(8px)';
+        el.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        setTimeout(() => el.remove(), 220);
+      }, 3200);
+    }
+
+    function showConfirm({ title = 'Confirmar ação', message = '', confirmText = 'Confirmar', danger = false }) {
+      return new Promise((resolve) => {
+        state.confirmResolver = resolve;
+        $('#confirmTitle').textContent = title;
+        $('#confirmMessage').textContent = message;
+        const okBtn = $('#confirmOkBtn');
+        okBtn.textContent = confirmText;
+        okBtn.className = danger ? 'g-btn g-btn-danger font-semibold' : 'g-btn g-btn-primary';
+        $('#confirmBackdrop').classList.add('open');
+      });
+    }
+
+    function closeConfirm(result) {
+      $('#confirmBackdrop').classList.remove('open');
+      if (state.confirmResolver) {
+        const fn = state.confirmResolver;
+        state.confirmResolver = null;
+        fn(result);
+      }
+    }
+
+    /* -----------------------------------------------------------------------
+       5. TEMA CLARO / ESCURO & META THEME-COLOR
+       ----------------------------------------------------------------------- */
+    function applyTheme(theme) {
+      const isDark = theme === 'dark';
+      document.body.classList.toggle('dark', isDark);
+      const meta = $('#metaThemeColor');
+      if (meta) meta.setAttribute('content', isDark ? '#131314' : '#f6f4f3');
+
+      $('#themeIcon').innerHTML = isDark
+        ? '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+        : '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+    }
+
+    function toggleTheme() {
+      db.settings.theme = document.body.classList.contains('dark') ? 'light' : 'dark';
+      applyTheme(db.settings.theme);
+      save();
+    }
+
+    /* -----------------------------------------------------------------------
+       6. CÁLCULOS E MÉTRICAS REAIS
+       ----------------------------------------------------------------------- */
+    const completedTasksCount = () => db.tasks.filter((t) => t.status === 'Concluída').length;
+    const totalHours = () => roundHours(db.records.reduce((acc, r) => acc + (Number(r.hours) || 0), 0));
+    const studyDaysCount = () => new Set(db.records.map((r) => r.date).filter(Boolean)).size;
+    const pendingReviewsList = () => db.reviews.filter((r) => (r.next || '') <= today()).sort((a, b) => (a.next || '').localeCompare(b.next || ''));
+    const pendingReviewsCount = () => pendingReviewsList().length;
+    const overallProgress = () => (db.tasks.length ? Math.round((completedTasksCount() / db.tasks.length) * 100) : 0);
+    const completedModulesCount = () => db.modules.filter((m) => m.status === 'Concluído').length;
+    const currentModule = () => db.modules.find((m) => m.status === 'Em andamento') || db.modules.find((m) => m.status !== 'Concluído') || db.modules[23];
+    const totalReviewsDone = () => db.reviews.reduce((acc, r) => acc + (r.history?.length || 0), 0);
+
+    function progressLevel(level) {
+      const recs = db.records.filter((r) => r.level === level).length;
+      const done = db.tasks.filter((t) => t.level === level && t.status === 'Concluída').length;
+      return Math.min(100, recs * 5 + done * 3);
+    }
+
+    /** Calcula o próximo intervalo de revisão (usado no botão e ao salvar) */
+    function computeNextInterval(review, rating) {
+      const baseMap = { 'Não lembrei': 1, 'Difícil': 2, 'Parcialmente': 4, 'Fácil': 7 };
+      const last = Number(review.interval) || 0;
+      if (!last) return baseMap[rating] || 1;
+      if (rating === 'Não lembrei') return 1;
+      if (rating === 'Difícil') return Math.max(2, Math.round(last * 1.25));
+      if (rating === 'Parcialmente') return Math.max(4, Math.round(last * 1.9));
+      return Math.max(7, Math.round(last * 2.5));
+    }
+
+    function updateReviewBadges() {
+      const count = pendingReviewsCount();
+      ['#navReviewBadge', '#mobReviewBadge'].forEach((id) => {
+        const el = $(id);
+        if (!el) return;
+        el.textContent = count > 99 ? '99+' : String(count);
+        el.classList.toggle('hidden', count === 0);
+      });
+    }
+
+    function greetingText() {
+      const h = new Date().getHours();
+      if (h < 12) return 'Bom dia';
+      if (h < 18) return 'Boa tarde';
+      return 'Boa noite';
+    }
+
+    function emptyState(title, subtitle = '') {
+      return `
+        <div class="py-10 px-4 text-center">
+          <div class="text-sm font-medium" style="color: var(--text-secondary);">${esc(title)}</div>
+          ${subtitle ? `<div class="text-xs mt-1" style="color: var(--text-muted);">${esc(subtitle)}</div>` : ''}
+        </div>
+      `;
+    }
+
+    /* -----------------------------------------------------------------------
+       7. NAVEGAÇÃO & DRAWER MOBILE
+       ----------------------------------------------------------------------- */
+    function closeDrawer() {
+      $('#sidebar').classList.add('-translate-x-full');
+      $('#drawerBackdrop').classList.add('hidden');
+    }
+
+    function openDrawer() {
+      $('#sidebar').classList.remove('-translate-x-full');
+      $('#drawerBackdrop').classList.remove('hidden');
+    }
+
+    function setPage(page) {
+      state.page = PAGE_META[page] ? page : 'dashboard';
+      $('#pageTitle').textContent = PAGE_META[state.page].title;
+      $('#pageEyebrow').textContent = PAGE_META[state.page].eyebrow;
+
+      $$('#sidebarNav .nav-pill').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.page === state.page);
+      });
+
+      $$('#mobileBottomNav .mob-nav-btn').forEach((btn) => {
+        const active = btn.dataset.page === state.page;
+        btn.style.backgroundColor = active ? 'var(--pill-active-bg)' : 'transparent';
+        btn.style.color = active ? 'var(--pill-active-text)' : 'var(--text-secondary)';
+      });
+
+      closeDrawer();
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* -----------------------------------------------------------------------
+       8. RENDERIZADORES DAS PÁGINAS
+       ----------------------------------------------------------------------- */
+    function render() {
+      updateReviewBadges();
+      const container = $('#content');
+      const map = {
+        dashboard: renderDashboard,
+        planner: renderPlanner,
+        records: renderRecords,
+        reviews: renderReviews,
+        library: renderLibrary,
+        fluency: renderFluency,
+        stats: renderStats
+      };
+      (map[state.page] || renderDashboard)(container);
+    }
+
+    /* ---- 8.1 DASHBOARD ---- */
+    function renderDashboard(c) {
+      const dueTasks = db.tasks.filter((t) => t.date === today() && t.status !== 'Concluída');
+      const recentRecords = [...db.records].sort((a, b) => (b.date || '').localeCompare(a.date || '')).slice(0, 5);
+      const levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
+      const mod = currentModule();
+      const modDone = completedModulesCount();
+      const pending = pendingReviewsCount();
+
+      c.innerHTML = `
+        <!-- Saudação estilo Gemini -->
+        <section class="mb-7">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full mb-3" style="background-color: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2C12.3 7.1 16.9 11.7 22 12C16.9 12.3 12.3 16.9 12 22C11.7 16.9 7.1 12.3 2 12C7.1 11.7 11.7 7.1 12 2Z" fill="url(#gemGradBrand)"/>
+                </svg>
+                <span>Início em 01/12/2026 · Ciclo contínuo até N1</span>
+              </div>
+              <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight leading-tight m-0">
+                <span class="gemini-text">${greetingText()},</span>
+                <span style="color: var(--text-primary);"> vamos avançar no japonês?</span>
+              </h2>
+              <p class="text-xs font-medium mt-1.5 mb-0 tracking-wide" style="color: var(--accent);">一歩ずつ · um passo de cada vez</p>
+              <p class="text-sm mt-1.5 m-0" style="color: var(--text-muted);">
+                Nível atual: <strong style="color: var(--text-primary);">${esc(db.settings.currentLevel || 'Iniciante')}</strong>
+                · Meta: <strong style="color: var(--text-primary);">JLPT ${esc(db.settings.targetLevel || 'N2')} (${esc(db.settings.targetLabel || 'dez/2027')})</strong>
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" class="g-btn" data-action="edit-goal">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <span>Editar meta</span>
+              </button>
+              <button type="button" class="g-btn g-btn-primary" data-action="new-record">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                <span>Registrar estudo</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4 Métricas Principais -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 mb-6">
+          <div class="g-card p-5">
+            <div class="text-xs font-medium" style="color: var(--text-muted);">Progresso geral</div>
+            <div class="font-display text-3xl font-bold tracking-tight mt-2">${overallProgress()}%</div>
+            <div class="text-xs mt-1" style="color: var(--text-muted);">${completedTasksCount()} de ${db.tasks.length} atividades</div>
+          </div>
+
+          <div class="g-card p-5">
+            <div class="text-xs font-medium" style="color: var(--text-muted);">Horas registradas</div>
+            <div class="font-display text-3xl font-bold tracking-tight mt-2">${formatHours(totalHours())}h</div>
+            <div class="text-xs mt-1" style="color: var(--text-muted);">${db.records.length} conteúdos salvos</div>
+          </div>
+
+          <div class="g-card p-5">
+            <div class="text-xs font-medium" style="color: var(--text-muted);">Dias de estudo</div>
+            <div class="font-display text-3xl font-bold tracking-tight mt-2">${studyDaysCount()}</div>
+            <div class="text-xs mt-1" style="color: var(--text-muted);">dias com registro</div>
+          </div>
+
+          <div class="g-card p-5 cursor-pointer hover:border-[var(--accent)]" data-go="reviews">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium" style="color: var(--text-muted);">Revisões pendentes</span>
+              ${pending > 0 ? '<span class="w-2.5 h-2.5 rounded-full" style="background-color: var(--danger);"></span>' : ''}
+            </div>
+            <div class="font-display text-3xl font-bold tracking-tight mt-2" style="color: ${pending > 0 ? 'var(--danger)' : 'var(--text-primary)'};">${pending}</div>
+            <div class="text-xs mt-1" style="color: var(--text-muted);">${pending > 0 ? 'clique para revisar agora' : 'tudo em dia hoje'}</div>
+          </div>
+        </section>
+
+        <!-- Grade Principal -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <!-- Coluna Esquerda (7 cols) -->
+          <div class="lg:col-span-7 flex flex-col gap-5">
+
+            <!-- Trilha JLPT -->
+            <section class="g-card p-6">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <div>
+                  <h3 class="font-display text-base font-semibold m-0">Trilha JLPT (N5 → N1)</h3>
+                  <p class="text-xs mt-0.5 m-0" style="color: var(--text-muted);">Indicador calculado sobre registros e atividades concluídas por nível.</p>
+                </div>
+                <span class="g-badge g-badge-accent">Meta: ${esc(db.settings.targetLevel || 'N2')} · ${esc(db.settings.targetLabel || 'dez/2027')}</span>
+              </div>
+
+              <div class="flex flex-col gap-3.5">
+                ${levels.map((lvl) => {
+                  const pct = progressLevel(lvl);
+                  const isTarget = lvl === (db.settings.targetLevel || 'N2');
+                  const isCurrent = lvl === db.settings.currentLevel;
+                  return `
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 text-xs font-bold flex items-center gap-1" style="color: ${isTarget ? 'var(--accent)' : 'var(--text-primary)'};">
+                        ${lvl}
+                      </div>
+                      <div class="flex-1 h-2.5 rounded-full overflow-hidden" style="background-color: var(--bg-elevated);">
+                        <div class="h-full rounded-full transition-all duration-300 ${isTarget ? 'gemini-bar' : ''}"
+                          style="width: ${pct}%; ${!isTarget ? 'background-color: var(--accent);' : ''}"></div>
+                      </div>
+                      <div class="w-16 text-right text-xs font-medium" style="color: var(--text-muted);">
+                        ${pct}%${isCurrent ? ' · atual' : ''}
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </section>
+
+            <!-- Últimos Conteúdos Registrados -->
+            <section class="g-card p-6">
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <h3 class="font-display text-base font-semibold m-0">Últimos conteúdos registrados</h3>
+                <button type="button" class="g-btn text-xs py-1.5 px-3" data-go="records">Ver todos</button>
+              </div>
+
+              ${recentRecords.length ? `
+                <div class="divide-y" style="border-color: var(--border);">
+                  ${recentRecords.map((r) => `
+                    <div class="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-3" style="border-color: var(--border);">
+                      <div class="min-w-0 flex-1">
+                        <div class="text-sm font-semibold truncate">${esc(r.title)}</div>
+                        <div class="flex flex-wrap items-center gap-1.5 mt-1 text-xs" style="color: var(--text-muted);">
+                          <span>${formatBR(r.date)}</span>
+                          <span>·</span>
+                          <span>${esc(r.category)}</span>
+                          <span>·</span>
+                          <span>${esc(r.level)}</span>
+                          ${r.hours ? `<span>· ${formatHours(r.hours)}h</span>` : ''}
+                        </div>
+                      </div>
+                      <button type="button" class="g-btn text-xs py-1.5 px-3 shrink-0" data-edit-record="${r.id}">Abrir</button>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : emptyState('Nenhum conteúdo registrado ainda.', 'Use o botão "Novo estudo" para registrar gramática, kanji, vocabulário ou listening.')}
+            </section>
+          </div>
+
+          <!-- Coluna Direita (5 cols) -->
+          <div class="lg:col-span-5 flex flex-col gap-5">
+
+            <!-- Estudos Programados para Hoje -->
+            <section class="g-card p-6">
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <div>
+                  <h3 class="font-display text-base font-semibold m-0">Estudos para hoje</h3>
+                  <div class="text-xs mt-0.5" style="color: var(--text-muted);">${formatBR(today())}</div>
+                </div>
+                <button type="button" class="g-btn text-xs py-1.5 px-3" data-go="planner">Cronograma</button>
+              </div>
+
+              ${dueTasks.length ? `
+                <div class="flex flex-col gap-2.5">
+                  ${dueTasks.map((t) => `
+                    <div class="g-card-solid p-3.5 flex items-center justify-between gap-3">
+                      <div class="min-w-0 flex-1">
+                        <div class="text-sm font-semibold truncate">${esc(t.title)}</div>
+                        <div class="text-xs mt-0.5" style="color: var(--text-muted);">${esc(t.category)} · ${esc(t.level)}</div>
+                      </div>
+                      <button type="button" class="g-btn g-btn-soft text-xs py-1.5 px-3 shrink-0" data-done-task="${t.id}">Concluir</button>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : emptyState('Nenhuma atividade pendente para hoje.', 'Planeje novas metas no cronograma quando quiser.')}
+            </section>
+
+            <!-- Módulo Atual da Fluency Academy -->
+            <section class="g-card p-6">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <h3 class="font-display text-base font-semibold m-0">Fluency Academy</h3>
+                <span class="g-badge g-badge-accent">${modDone}/24 concluídos</span>
+              </div>
+
+              <div class="g-card-solid p-4 mb-3">
+                <div class="text-xs font-medium uppercase tracking-wider" style="color: var(--text-muted);">Módulo atual</div>
+                <div class="font-display text-base font-semibold mt-1">
+                  Módulo ${String(mod.id).padStart(2, '0')}
+                  ${mod.title ? `— ${esc(mod.title)}` : ''}
+                </div>
+                <div class="text-xs mt-1" style="color: var(--text-muted);">
+                  Status: ${esc(mod.status)}${mod.lessons ? ` · ${esc(mod.lessons)}` : ''}
+                </div>
+              </div>
+
+              <div class="h-2 rounded-full overflow-hidden mb-3" style="background-color: var(--bg-elevated);">
+                <div class="h-full rounded-full gemini-bar transition-all duration-300" style="width: ${(modDone / 24) * 100}%;"></div>
+              </div>
+
+              <button type="button" class="g-btn w-full" data-go="fluency">Abrir módulos da Fluency Academy</button>
+            </section>
+
+            <!-- Atalhos Rápidos -->
+            <section class="g-card p-6">
+              <h3 class="font-display text-base font-semibold mb-3.5 m-0">Atalhos rápidos</h3>
+              <div class="grid grid-cols-2 gap-2.5">
+                <button type="button" class="g-btn justify-start py-2.5" data-action="new-record">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                  <span>Novo registro</span>
+                </button>
+                <button type="button" class="g-btn justify-start py-2.5" data-action="new-task">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                  <span>Nova atividade</span>
+                </button>
+                <button type="button" class="g-btn justify-start py-2.5" data-go="reviews">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 11-3.1-6.8"/><path d="M21 3v6h-6"/></svg>
+                  <span>Revisar (${pending})</span>
+                </button>
+                <button type="button" class="g-btn justify-start py-2.5" data-go="library">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <span>Biblioteca</span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ---- 8.2 CRONOGRAMA PROGRESSIVO ---- */
+    function getWeekRange(refISO) {
+      const d = parseLocalISO(refISO) || new Date();
+      const dayOfWeek = (d.getDay() + 6) % 7; // Seg=0 ... Dom=6
+      const start = new Date(d.getFullYear(), d.getMonth(), d.getDate() - dayOfWeek);
+      const end = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 6);
+      return [toLocalISO(start), toLocalISO(end)];
+    }
+
+    function filterTasks() {
+      const q = (state.plannerSearch || '').trim().toLowerCase();
+      const y = state.calDate.getFullYear();
+      const m = state.calDate.getMonth(); // 0..11
+      const quarter = Math.floor(m / 3); // 0..3
+      const refDay = state.selectedDay || today();
+      const [weekStart, weekEnd] = getWeekRange(refDay);
+      const monthPrefix = `${y}-${String(m + 1).padStart(2, '0')}`;
+      const yearPrefix = `${y}-`;
+
+      return db.tasks.filter((t) => {
+        // Filtro por busca textual segura
+        if (q) {
+          const hay = `${t.title || ''} ${t.description || ''} ${t.notes || ''} ${t.category || ''}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        if (state.plannerStatus && t.status !== state.plannerStatus) return false;
+        if (state.plannerLevel && t.level !== state.plannerLevel) return false;
+
+        // Se um dia específico foi selecionado no calendário e período é 'day' ou 'all'
+        if (state.selectedDay && state.plannerPeriod === 'day') {
+          return t.date === state.selectedDay;
+        }
+        if (state.plannerPeriod === 'day') return t.date === today();
+        if (state.plannerPeriod === 'week') return (t.date || '') >= weekStart && (t.date || '') <= weekEnd;
+        if (state.plannerPeriod === 'month') return (t.date || '').startsWith(monthPrefix);
+        if (state.plannerPeriod === 'quarter') {
+          const td = parseLocalISO(t.date);
+          return td && td.getFullYear() === y && Math.floor(td.getMonth() / 3) === quarter;
+        }
+        if (state.plannerPeriod === 'year') return (t.date || '').startsWith(yearPrefix);
+
+        // Quando período é 'all' mas há dia selecionado no calendário
+        if (state.selectedDay) return t.date === state.selectedDay;
+        return true;
+      }).sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+    }
+
+    function renderTaskListHTML(list) {
+      if (!list.length) {
+        return emptyState('Nenhuma atividade encontrada para este filtro.', 'Crie uma atividade ou selecione outro período.');
+      }
+
+      return `
+        <div class="flex flex-col gap-2.5">
+          ${list.map((t) => {
+            const done = t.status === 'Concluída';
+            const link = safeLink(t.url);
+            const statusClass = done ? 'g-badge-success' : t.status === 'Em andamento' ? 'g-badge-accent' : t.status === 'Adiada' ? 'g-badge-warn' : '';
+            return `
+              <article class="g-card-solid p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-start gap-3 min-w-0 flex-1">
+                  <button type="button" data-toggle-task="${t.id}" title="${done ? 'Reabrir atividade' : 'Concluir atividade'}"
+                    class="mt-0.5 w-6 h-6 rounded-full border flex items-center justify-center shrink-0 cursor-pointer transition-colors"
+                    style="border-color: ${done ? 'var(--success)' : 'var(--border-strong)'}; background-color: ${done ? 'var(--success)' : 'transparent'}; color: #fff;">
+                    ${done ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>' : ''}
+                  </button>
+                  <div class="min-w-0 flex-1">
+                    <div class="text-sm font-semibold ${done ? 'line-through opacity-60' : ''}">${esc(t.title)}</div>
+                    ${t.description ? `<div class="text-xs mt-0.5 line-clamp-2" style="color: var(--text-secondary);">${esc(t.description)}</div>` : ''}
+                    <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                      <span class="g-badge">${formatBR(t.date)}</span>
+                      <span class="g-badge">${esc(t.category)}</span>
+                      <span class="g-badge">${esc(t.level)}</span>
+                      <span class="g-badge ${statusClass}">${esc(t.status)}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-1.5 shrink-0 pl-9 sm:pl-0">
+                  ${link ? `<a href="${esc(link)}" target="_blank" rel="noopener noreferrer" class="g-btn text-xs py-1.5 px-3">Material ↗</a>` : ''}
+                  ${!done ? `<button type="button" class="g-btn text-xs py-1.5 px-2.5" data-reschedule-plus="${t.id}" title="Reagendar para o dia seguinte">+1 dia</button>` : ''}
+                  <button type="button" class="g-btn text-xs py-1.5 px-2.5" data-reschedule-pick="${t.id}" title="Escolher nova data">Reagendar</button>
+                  <button type="button" class="g-btn text-xs py-1.5 px-3" data-edit-task="${t.id}">Editar</button>
+                </div>
+              </article>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function renderPlanner(c) {
+      const y = state.calDate.getFullYear();
+      const m = state.calDate.getMonth();
+      const first = new Date(y, m, 1);
+      const offset = (first.getDay() + 6) % 7; // Segunda-feira primeiro
+      const daysInMonth = new Date(y, m + 1, 0).getDate();
+      const prevDays = new Date(y, m, 0).getDate();
+      const todayISO = today();
+      const quarterNum = Math.floor(m / 3) + 1;
+
+      const cells = [];
+      for (let i = 0; i < 42; i++) {
+        const dayNum = i - offset + 1;
+        let dt;
+        let dim = false;
+        if (dayNum < 1) {
+          dt = new Date(y, m - 1, prevDays + dayNum);
+          dim = true;
+        } else if (dayNum > daysInMonth) {
+          dt = new Date(y, m + 1, dayNum - daysInMonth);
+          dim = true;
+        } else {
+          dt = new Date(y, m, dayNum);
+        }
+
+        const iso = toLocalISO(dt);
+        const dayTasks = db.tasks.filter((t) => t.date === iso);
+        const isSelected = state.selectedDay === iso;
+        const isToday = iso === todayISO;
+
+        cells.push(`
+          <div class="cal-cell ${dim ? 'is-dim' : ''} ${isToday ? 'is-today' : ''} ${isSelected ? 'is-selected' : ''}" data-cal-day="${iso}">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold ${isToday ? 'px-1.5 py-0.5 rounded-full' : ''}"
+                style="${isToday ? 'background-color: var(--accent); color: var(--on-accent);' : 'color: var(--text-primary);'}">${dt.getDate()}</span>
+              ${dayTasks.length ? `<span class="text-[10px] font-semibold" style="color: var(--text-muted);">${dayTasks.length}</span>` : ''}
+            </div>
+            <div class="flex flex-col gap-1 mt-0.5 overflow-hidden">
+              ${dayTasks.slice(0, 2).map((t) => `
+                <div class="text-[10px] px-1.5 py-0.5 rounded-md truncate font-medium"
+                  style="background-color: ${t.status === 'Concluída' ? 'var(--success-soft)' : 'var(--pill-active-bg)'}; color: ${t.status === 'Concluída' ? 'var(--success)' : 'var(--pill-active-text)'};"
+                  title="${esc(t.title)}">${esc(t.title)}</div>
+              `).join('')}
+              ${dayTasks.length > 2 ? `<div class="text-[10px] px-1" style="color: var(--text-muted);">+${dayTasks.length - 2} mais</div>` : ''}
+            </div>
+          </div>
+        `);
+      }
+
+      const monthLabel = state.calDate.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+      const filtered = filterTasks();
+
+      const periodPills = [
+        ['all', 'Todos'],
+        ['day', state.selectedDay ? `Dia (${formatBR(state.selectedDay)})` : 'Hoje'],
+        ['week', 'Semana'],
+        ['month', 'Mês'],
+        ['quarter', `Trimestre (T${quarterNum}/${y})`],
+        ['year', `Ano (${y})`]
+      ];
+
+      c.innerHTML = `
+        <!-- Calendário Mensal -->
+        <section class="g-card p-5 sm:p-6 mb-5">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <h2 class="font-display text-lg font-semibold capitalize m-0">${esc(monthLabel)}</h2>
+              <p class="text-xs mt-0.5 m-0" style="color: var(--text-muted);">Clique em um dia para filtrar ou agendar uma atividade. Trimestre T${quarterNum} de ${y}.</p>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button type="button" class="g-btn-icon flex items-center justify-center" data-cal-nav="-12" title="Ano anterior">«</button>
+              <button type="button" class="g-btn-icon flex items-center justify-center" data-cal-nav="-1" title="Mês anterior">‹</button>
+              <button type="button" class="g-btn text-xs py-1.5 px-3" data-cal-nav="today">Hoje</button>
+              <button type="button" class="g-btn-icon flex items-center justify-center" data-cal-nav="1" title="Próximo mês">›</button>
+              <button type="button" class="g-btn-icon flex items-center justify-center" data-cal-nav="12" title="Próximo ano">»</button>
+            </div>
+          </div>
+
+          <div class="cal-grid mb-1.5">
+            ${['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'].map((d) => `
+              <div class="text-center text-[11px] font-semibold uppercase tracking-wider py-1" style="color: var(--text-muted);">${d}</div>
+            `).join('')}
+          </div>
+
+          <div class="cal-grid">${cells.join('')}</div>
+
+          ${state.selectedDay ? `
+            <div class="mt-4 p-3.5 rounded-2xl flex flex-wrap items-center justify-between gap-3" style="background-color: var(--pill-active-bg); color: var(--pill-active-text);">
+              <span class="text-xs sm:text-sm font-semibold">Dia selecionado: ${formatBR(state.selectedDay)}</span>
+              <div class="flex items-center gap-2">
+                <button type="button" class="g-btn g-btn-primary text-xs py-1.5 px-3" data-add-task-date="${state.selectedDay}">＋ Atividade neste dia</button>
+                <button type="button" class="g-btn text-xs py-1.5 px-3" data-clear-day="1">Limpar seleção</button>
+              </div>
+            </div>
+          ` : ''}
+        </section>
+
+        <!-- Lista de Atividades com Filtros de Período -->
+        <section class="g-card p-5 sm:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <h2 class="font-display text-lg font-semibold m-0">Atividades planejadas</h2>
+              <div class="text-xs mt-0.5" style="color: var(--text-muted);">${filtered.length} exibida(s) · ${db.tasks.length} no total</div>
+            </div>
+            <button type="button" class="g-btn g-btn-primary" data-action="new-task">＋ Nova atividade</button>
+          </div>
+
+          <!-- Filtros de Período (Ano / Trimestre / Mês / Semana / Dia) -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-2 mb-3">
+            ${periodPills.map(([key, label]) => `
+              <button type="button" class="filter-pill ${state.plannerPeriod === key ? 'active' : ''}" data-planner-period="${key}">${esc(label)}</button>
+            `).join('')}
+          </div>
+
+          <!-- Busca e Seletores -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-5">
+            <input id="taskSearchInput" type="search" class="g-input g-input-pill" placeholder="Buscar atividade, descrição ou nota..." value="${esc(state.plannerSearch)}">
+            <select id="taskStatusSelect" class="g-select g-select-pill">
+              <option value="">Todos os status</option>
+              ${['Planejada', 'Em andamento', 'Concluída', 'Adiada'].map((s) => `<option ${state.plannerStatus === s ? 'selected' : ''}>${s}</option>`).join('')}
+            </select>
+            <select id="taskLevelSelect" class="g-select g-select-pill">
+              <option value="">Todos os níveis JLPT</option>
+              ${['Todos', 'N5', 'N4', 'N3', 'N2', 'N1'].map((l) => `<option ${state.plannerLevel === l ? 'selected' : ''}>${l}</option>`).join('')}
+            </select>
+          </div>
+
+          <div id="taskListContainer">${renderTaskListHTML(filtered)}</div>
+        </section>
+      `;
+    }
+
+    /* ---- 8.3 REGISTROS DE CONTEÚDOS ESTUDADOS ---- */
+    function filterRecords() {
+      const q = (state.recordSearch || '').trim().toLowerCase();
+      return db.records.filter((r) => {
+        if (q) {
+          const hay = `${r.title || ''} ${r.content || ''} ${r.examples || ''} ${r.translations || ''} ${r.difficulties || ''}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        if (state.recordCat && r.category !== state.recordCat) return false;
+        if (state.recordLevel && r.level !== state.recordLevel) return false;
+        return true;
+      }).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    }
+
+    function renderRecordListHTML(list) {
+      if (!list.length) {
+        return emptyState('Nenhum registro encontrado.', 'Clique em "Novo registro" para salvar o que você estudou hoje.');
+      }
+
+      return `
+        <div class="flex flex-col gap-3">
+          ${list.map((r) => {
+            const inReview = db.reviews.some((rv) => rv.sourceId === r.id);
+            return `
+              <article class="g-card-solid p-4 sm:p-5">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                  <div class="min-w-0 flex-1">
+                    <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                      <span class="g-badge g-badge-accent">${esc(r.category)}</span>
+                      <span class="g-badge">${esc(r.level)}</span>
+                      <span class="g-badge">${formatBR(r.date)}</span>
+                      ${r.hours ? `<span class="g-badge">${formatHours(r.hours)}h</span>` : ''}
+                      ${r.rating ? `<span class="g-badge g-badge-success">${esc(r.rating)}</span>` : ''}
+                    </div>
+                    <h3 class="font-display text-base font-semibold m-0">${esc(r.title)}</h3>
+                    ${r.content ? `<p class="text-sm mt-2 mb-0 whitespace-pre-line line-clamp-3" style="color: var(--text-secondary);">${esc(r.content)}</p>` : ''}
+                    ${r.examples ? `
+                      <div class="mt-2.5 px-3.5 py-2.5 rounded-2xl text-xs whitespace-pre-line" style="background-color: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);">
+                        <div class="font-semibold mb-1" style="color: var(--text-muted);">Exemplos em japonês</div>
+                        ${esc(r.examples.slice(0, 220))}${r.examples.length > 220 ? '…' : ''}
+                      </div>
+                    ` : ''}
+                  </div>
+
+                  <div class="flex flex-wrap sm:flex-col items-stretch gap-2 shrink-0">
+                    <button type="button" class="g-btn text-xs py-1.5 px-3.5" data-edit-record="${r.id}">Abrir / Editar</button>
+                    <button type="button" class="g-btn ${inReview ? '' : 'g-btn-soft'} text-xs py-1.5 px-3.5" data-send-review="${r.id}">
+                      ${inReview ? '✓ Na revisão' : '↻ Enviar p/ revisão'}
+                    </button>
+                  </div>
+                </div>
+              </article>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function renderRecords(c) {
+      const list = filterRecords();
+      c.innerHTML = `
+        <section class="g-card p-5 sm:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div>
+              <h2 class="font-display text-lg font-semibold m-0">Diário de aprendizagem</h2>
+              <p class="text-xs mt-0.5 m-0" style="color: var(--text-muted);">Registre gramática, vocabulário, kanji, exemplos em japonês, traduções e dificuldades.</p>
+            </div>
+            <button type="button" class="g-btn g-btn-primary" data-action="new-record">＋ Novo registro</button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-5">
+            <input id="recordSearchInput" type="search" class="g-input g-input-pill" placeholder="Pesquisar título, conteúdo, exemplos..." value="${esc(state.recordSearch)}">
+            <select id="recordCatSelect" class="g-select g-select-pill">
+              <option value="">Todas as categorias</option>
+              ${['Gramática', 'Vocabulário', 'Kanji', 'Listening', 'Reading', 'Escrita'].map((cat) => `<option ${state.recordCat === cat ? 'selected' : ''}>${cat}</option>`).join('')}
+            </select>
+            <select id="recordLevelSelect" class="g-select g-select-pill">
+              <option value="">Todos os níveis JLPT</option>
+              ${['N5', 'N4', 'N3', 'N2', 'N1', 'Todos'].map((lvl) => `<option ${state.recordLevel === lvl ? 'selected' : ''}>${lvl}</option>`).join('')}
+            </select>
+          </div>
+
+          <div id="recordListContainer">${renderRecordListHTML(list)}</div>
+        </section>
+      `;
+    }
+
+    /* ---- 8.4 SISTEMA DE REVISÃO (ACTIVE RECALL + REPETIÇÃO ESPAÇADA) ---- */
+    function renderReviews(c) {
+      const due = pendingReviewsList();
+      const q = (state.reviewSearch || '').trim().toLowerCase();
+      const allFiltered = db.reviews
+        .filter((r) => !q || `${r.title || ''} ${r.category || ''} ${r.content || ''}`.toLowerCase().includes(q))
+        .sort((a, b) => (a.next || '').localeCompare(b.next || ''));
+
+      c.innerHTML = `
+        <!-- Banner Explicativo + Botão Novo Item -->
+        <section class="g-card p-5 sm:p-6 mb-5">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="font-display text-lg font-semibold m-0">Revisões de hoje</h2>
+                <span class="g-badge ${due.length ? 'g-badge-danger' : 'g-badge-success'}">${due.length} pendente(s)</span>
+              </div>
+              <p class="text-xs mt-1 m-0" style="color: var(--text-muted);">
+                Tente recordar ativamente o conteúdo antes de revelar a resposta. Os intervalos se ajustam automaticamente conforme sua avaliação.
+              </p>
+            </div>
+            <button type="button" class="g-btn g-btn-primary" data-action="new-review">＋ Novo item de revisão</button>
+          </div>
+
+          <div class="mt-5 flex flex-col gap-4">
+            ${due.length ? due.map((r) => {
+              const revealed = state.revealedReviews.has(r.id);
+              const d1 = computeNextInterval(r, 'Não lembrei');
+              const d2 = computeNextInterval(r, 'Difícil');
+              const d3 = computeNextInterval(r, 'Parcialmente');
+              const d4 = computeNextInterval(r, 'Fácil');
+              const overdue = (r.next || '') < today();
+              return `
+                <article class="g-card-solid p-5 sm:p-6 border" style="border-color: ${revealed ? 'var(--accent)' : 'var(--border)'};">
+                  <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+                    <div>
+                      <div class="flex flex-wrap items-center gap-1.5 mb-2">
+                        <span class="g-badge g-badge-accent">${esc(r.category)}</span>
+                        <span class="g-badge">${esc(r.level)}</span>
+                        <span class="g-badge ${overdue ? 'g-badge-danger' : ''}">${overdue ? 'Atrasada · ' : ''}${formatBR(r.next)}</span>
+                        <span class="g-badge">${r.history?.length || 0} revisões</span>
+                      </div>
+                      <h3 class="font-display text-lg font-semibold m-0">${esc(r.title)}</h3>
+                    </div>
+                    <button type="button" class="g-btn text-xs py-1 px-3" data-edit-review="${r.id}">Editar</button>
+                  </div>
+
+                  ${!revealed ? `
+                    <div class="mt-4 pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-3" style="border-color: var(--border);">
+                      <span class="text-xs" style="color: var(--text-muted);">Tente lembrar o significado, regra gramatical ou exemplos antes de virar o cartão.</span>
+                      <button type="button" class="g-btn g-btn-soft w-full sm:w-auto" data-reveal-review="${r.id}">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <span>Mostrar conteúdo / resposta</span>
+                      </button>
+                    </div>
+                  ` : `
+                    <div class="recall-reveal mt-4 pt-4 border-t" style="border-color: var(--border);">
+                      <div class="p-4 rounded-2xl text-sm whitespace-pre-line leading-relaxed mb-4" style="background-color: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);">
+                        ${esc(r.content || 'Sem conteúdo adicional cadastrado neste cartão.')}
+                      </div>
+
+                      <div class="text-xs font-medium mb-2.5" style="color: var(--text-muted);">Como foi sua lembrança?</div>
+                      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <button type="button" class="g-btn g-btn-danger flex-col py-2.5 gap-0.5" data-rate-review="${r.id}" data-rating="Não lembrei">
+                          <span class="font-semibold">Não lembrei</span>
+                          <span class="text-[11px] opacity-80">+${d1} ${d1 === 1 ? 'dia' : 'dias'}</span>
+                        </button>
+                        <button type="button" class="g-btn flex-col py-2.5 gap-0.5" style="background-color: var(--warn-soft); color: var(--warn); border-color: transparent;" data-rate-review="${r.id}" data-rating="Difícil">
+                          <span class="font-semibold">Difícil</span>
+                          <span class="text-[11px] opacity-85">+${d2} ${d2 === 1 ? 'dia' : 'dias'}</span>
+                        </button>
+                        <button type="button" class="g-btn g-btn-soft flex-col py-2.5 gap-0.5" data-rate-review="${r.id}" data-rating="Parcialmente">
+                          <span class="font-semibold">Parcialmente</span>
+                          <span class="text-[11px] opacity-85">+${d3} dias</span>
+                        </button>
+                        <button type="button" class="g-btn flex-col py-2.5 gap-0.5" style="background-color: var(--success-soft); color: var(--success); border-color: transparent;" data-rate-review="${r.id}" data-rating="Fácil">
+                          <span class="font-semibold">Fácil</span>
+                          <span class="text-[11px] opacity-85">+${d4} dias</span>
+                        </button>
+                      </div>
+                    </div>
+                  `}
+                </article>
+              `;
+            }).join('') : emptyState('Parabéns! Nenhuma revisão pendente para hoje.', 'Envie conteúdos da aba Registros ou crie um item manual acima.')}
+          </div>
+        </section>
+
+        <!-- Lista Completa da Fila de Revisão -->
+        <section class="g-card p-5 sm:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <h3 class="font-display text-base font-semibold m-0">Todos os itens de revisão (${db.reviews.length})</h3>
+              <div class="text-xs mt-0.5" style="color: var(--text-muted);">Total de revisões concluídas: ${totalReviewsDone()}</div>
+            </div>
+            <input id="reviewSearchInput" type="search" class="g-input g-input-pill sm:w-64" placeholder="Filtrar itens..." value="${esc(state.reviewSearch)}">
+          </div>
+
+          <div id="allReviewsList">
+            ${renderAllReviewsHTML(allFiltered)}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderAllReviewsHTML(list) {
+      if (!list.length) return emptyState('Sua fila de revisão está vazia.');
+      return `
+        <div class="divide-y" style="border-color: var(--border);">
+          ${list.map((r) => {
+            const isDue = (r.next || '') <= today();
+            const lastEntry = r.history && r.history.length ? r.history[r.history.length - 1] : null;
+            return `
+              <div class="py-3.5 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5" style="border-color: var(--border);">
+                <div class="min-w-0 flex-1">
+                  <div class="text-sm font-semibold truncate">${esc(r.title)}</div>
+                  <div class="flex flex-wrap items-center gap-1.5 mt-1 text-xs" style="color: var(--text-muted);">
+                    <span class="g-badge ${isDue ? 'g-badge-danger' : 'g-badge-success'}">Próxima: ${formatBR(r.next)}</span>
+                    <span>${esc(r.category)} · ${esc(r.level)}</span>
+                    <span>· ${r.history?.length || 0} revisões</span>
+                    ${lastEntry ? `<span>· Última: ${esc(lastEntry.rating)} (${formatBR(lastEntry.date)})</span>` : ''}
+                  </div>
+                </div>
+                <button type="button" class="g-btn text-xs py-1.5 px-3 shrink-0 self-start sm:self-center" data-edit-review="${r.id}">Detalhes / Editar</button>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    /* ---- 8.5 BIBLIOTECA DE LINKS E ARQUIVOS ---- */
+    function filterResources() {
+      const q = (state.libSearch || '').trim().toLowerCase();
+      return db.resources.filter((r) => {
+        if (q) {
+          const hay = `${r.title || ''} ${r.description || ''} ${r.category || ''} ${r.url || ''}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        if (state.libCat && r.category !== state.libCat) return false;
+        if (state.libLevel && r.level !== state.libLevel) return false;
+        return true;
+      });
+    }
+
+    function renderResourceListHTML(list) {
+      if (!list.length) return emptyState('Nenhum recurso encontrado na biblioteca.');
+      return `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          ${list.map((r) => {
+            const href = safeLink(r.url);
+            return `
+              <article class="g-card-solid p-4 sm:p-5 flex flex-col justify-between gap-3">
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="g-badge g-badge-accent">${esc(r.category)}</span>
+                    <span class="g-badge">${esc(r.level)}</span>
+                  </div>
+                  <h3 class="font-display text-base font-semibold m-0">${esc(r.title)}</h3>
+                  ${r.description ? `<p class="text-xs mt-1.5 mb-0 leading-relaxed" style="color: var(--text-secondary);">${esc(r.description)}</p>` : ''}
+                </div>
+                <div class="flex items-center justify-between gap-2 pt-3 border-t" style="border-color: var(--border);">
+                  <span class="text-[11px] truncate max-w-[180px]" style="color: var(--text-muted);">${href ? esc(new URL(href).hostname) : (r.url ? 'Referência local' : 'Sem link')}</span>
+                  <div class="flex items-center gap-1.5">
+                    ${href ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer" class="g-btn g-btn-soft text-xs py-1.5 px-3">Abrir ↗</a>` : ''}
+                    <button type="button" class="g-btn text-xs py-1.5 px-3" data-edit-resource="${r.id}">Editar</button>
+                  </div>
+                </div>
+              </article>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function renderLibrary(c) {
+      const list = filterResources();
+      c.innerHTML = `
+        <section class="g-card p-5 sm:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div>
+              <h2 class="font-display text-lg font-semibold m-0">Biblioteca pessoal</h2>
+              <p class="text-xs mt-0.5 m-0" style="color: var(--text-muted);">Sites, vídeos, dicionários, PDFs, documentos e cursos organizados em um só lugar.</p>
+            </div>
+            <button type="button" class="g-btn g-btn-primary" data-action="new-resource">＋ Adicionar recurso</button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-5">
+            <input id="libSearchInput" type="search" class="g-input g-input-pill" placeholder="Buscar por título ou descrição..." value="${esc(state.libSearch)}">
+            <select id="libCatSelect" class="g-select g-select-pill">
+              <option value="">Todas as categorias</option>
+              ${['Site', 'Vídeo', 'Documento', 'PDF', 'Arquivo', 'Dicionário', 'Curso', 'Ferramenta', 'Material', 'Outro'].map((cat) => `<option ${state.libCat === cat ? 'selected' : ''}>${cat}</option>`).join('')}
+            </select>
+            <select id="libLevelSelect" class="g-select g-select-pill">
+              <option value="">Todos os níveis</option>
+              ${['Todos', 'N5', 'N4', 'N3', 'N2', 'N1'].map((lvl) => `<option ${state.libLevel === lvl ? 'selected' : ''}>${lvl}</option>`).join('')}
+            </select>
+          </div>
+
+          <div id="libListContainer">${renderResourceListHTML(list)}</div>
+
+          <p class="text-xs mt-5 mb-0" style="color: var(--text-muted);">
+            Privacidade: nenhum documento privado é acessado automaticamente. Links externos abrem diretamente em nova aba.
+          </p>
+        </section>
+      `;
+    }
+
+    /* ---- 8.6 FLUENCY ACADEMY (24 MÓDULOS EDITÁVEIS EM TEMPO REAL) ---- */
+    function renderFluency(c) {
+      const done = completedModulesCount();
+      const pct = Math.round((done / 24) * 100);
+      const q = (state.fluencySearch || '').trim().toLowerCase();
+
+      const mods = db.modules.filter((m) => {
+        if (state.fluencyFilter !== 'all' && m.status !== state.fluencyFilter) return false;
+        if (q) {
+          const hay = `módulo ${String(m.id).padStart(2, '0')} ${m.title || ''} ${m.lessons || ''} ${m.notes || ''} ${m.questions || ''}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      c.innerHTML = `
+        <section class="g-card p-5 sm:p-6 mb-5">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <div>
+              <h2 class="font-display text-lg font-semibold m-0">Fluency Academy — 24 Módulos</h2>
+              <p class="text-xs mt-0.5 m-0" style="color: var(--text-muted);">Títulos e conteúdos totalmente livres para preencher conforme sua turma. Tudo é salvo automaticamente enquanto você digita.</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="fluencyProgressCount" class="g-badge g-badge-accent text-xs px-3 py-1">${done}/24 concluídos (${pct}%)</span>
+            </div>
+          </div>
+
+          <div class="h-2.5 rounded-full overflow-hidden mb-5" style="background-color: var(--bg-elevated);">
+            <div id="fluencyProgressBar" class="h-full rounded-full gemini-bar transition-all duration-300" style="width: ${pct}%;"></div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+              ${[
+                ['all', 'Todos (24)'],
+                ['Não iniciado', 'Não iniciado'],
+                ['Em andamento', 'Em andamento'],
+                ['Concluído', 'Concluído']
+              ].map(([val, label]) => `
+                <button type="button" class="filter-pill ${state.fluencyFilter === val ? 'active' : ''}" data-fluency-filter="${val}">${label}</button>
+              `).join('')}
+            </div>
+            <input id="fluencySearchInput" type="search" class="g-input g-input-pill sm:w-64" placeholder="Filtrar módulos..." value="${esc(state.fluencySearch)}">
+          </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4" id="fluencyGrid">
+          ${mods.length ? mods.map((m) => {
+            const statusClass = m.status === 'Concluído' ? 'g-badge-success' : m.status === 'Em andamento' ? 'g-badge-accent' : '';
+            return `
+              <article class="g-card p-5 flex flex-col gap-3" data-module-card="${m.id}">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="font-display text-base font-semibold m-0">Módulo ${String(m.id).padStart(2, '0')}</h3>
+                  <span class="g-badge ${statusClass}" data-module-badge="${m.id}">${esc(m.status)}</span>
+                </div>
+
+                <div>
+                  <label class="block text-[11px] font-medium mb-1" style="color: var(--text-muted);">Título (opcional)</label>
+                  <input type="text" class="g-input text-xs py-2" data-mod-field="title" data-mod-id="${m.id}" placeholder="Ex.: nome do módulo..." value="${esc(m.title)}">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2.5">
+                  <div>
+                    <label class="block text-[11px] font-medium mb-1" style="color: var(--text-muted);">Status</label>
+                    <select class="g-select text-xs py-2" data-mod-field="status" data-mod-id="${m.id}">
+                      <option ${m.status === 'Não iniciado' ? 'selected' : ''}>Não iniciado</option>
+                      <option ${m.status === 'Em andamento' ? 'selected' : ''}>Em andamento</option>
+                      <option ${m.status === 'Concluído' ? 'selected' : ''}>Concluído</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[11px] font-medium mb-1" style="color: var(--text-muted);">Data</label>
+                    <input type="date" class="g-input text-xs py-2" data-mod-field="date" data-mod-id="${m.id}" value="${esc(m.date)}">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[11px] font-medium mb-1" style="color: var(--text-muted);">Aulas registradas</label>
+                  <input type="text" class="g-input text-xs py-2" data-mod-field="lessons" data-mod-id="${m.id}" placeholder="Ex.: Aulas 1 a 5 concluídas..." value="${esc(m.lessons)}">
+                </div>
+
+                <div>
+                  <label class="block text-[11px] font-medium mb-1" style="color: var(--text-muted);">Anotações</label>
+                  <textarea rows="2" class="g-textarea text-xs" data-mod-field="notes" data-mod-id="${m.id}" placeholder="Pontos principais aprendidos...">${esc(m.notes)}</textarea>
+                </div>
+
+                <div>
+                  <label class="block text-[11px] font-medium mb-1" style="color: var(--text-muted);">Dúvidas</label>
+                  <textarea rows="2" class="g-textarea text-xs" data-mod-field="questions" data-mod-id="${m.id}" placeholder="Dúvidas para revisar ou perguntar...">${esc(m.questions)}</textarea>
+                </div>
+              </article>
+            `;
+          }).join('') : `<div class="col-span-full g-card">${emptyState('Nenhum módulo encontrado para este filtro.')}</div>`}
+        </section>
+      `;
+    }
+
+    /* ---- 8.7 ESTATÍSTICAS REAIS ---- */
+    function renderStats(c) {
+      const cats = ['Gramática', 'Vocabulário', 'Kanji', 'Listening', 'Reading', 'Escrita'];
+      const levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
+      const now = new Date();
+
+      // Sempre ancora no dia 1 para nunca pular fevereiro ou duplicar meses nos dias 29-31
+      const months = Array.from({ length: 6 }, (_, i) => {
+        const d = new Date(now.getFullYear(), now.getMonth() - 5 + i, 1);
+        const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+        const label = d.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '');
+        const count = db.records.filter((r) => (r.date || '').startsWith(key)).length;
+        const hrs = roundHours(db.records.filter((r) => (r.date || '').startsWith(key)).reduce((a, r) => a + (Number(r.hours) || 0), 0));
+        return { key, label, count, hrs };
+      });
+      const maxCount = Math.max(1, ...months.map((x) => x.count));
+      const reviewsDone = totalReviewsDone();
+
+      c.innerHTML = `
+        <!-- 5 KPIs -->
+        <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 mb-6">
+          <div class="g-card p-5">
+            <div class="text-xs font-medium" style="color: var(--text-muted);">Conteúdos estudados</div>
+            <div class="font-display text-3xl font-bold mt-2">${db.records.length}</div>
+          </div>
+          <div class="g-card p-5">
+            <div class="text-xs font-medium" style="color: var(--text-muted);">Horas registradas</div>
+            <div class="font-display text-3xl font-bold mt-2">${formatHours(totalHours())}h</div>
+          </div>
+          <div class="g-card p-5">
+            <div class="text-xs font-medium" style="color: var(--text-muted);">Dias de estudo</div>
+            <div class="font-display text-3xl font-bold mt-2">${studyDaysCount()}</div>
+          </div>
+          <div class="g-card p-5">
+            <div class="text-xs font-medium" style="color: var(--text-muted);">Módulos concluídos</div>
+            <div class="font-display text-3xl font-bold mt-2">${completedModulesCount()}<span class="text-base font-normal" style="color: var(--text-muted);">/24</span></div>
+          </div>
+          <div class="g-card p-5 col-span-2 sm:col-span-1">
+            <div class="text-xs font-medium" style="color: var(--text-muted);">Revisões realizadas</div>
+            <div class="font-display text-3xl font-bold mt-2">${reviewsDone}</div>
+          </div>
+        </section>
+
+        <!-- Gráfico 6 Meses + Resumo de Revisões -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
+          <section class="g-card p-6 lg:col-span-8">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="font-display text-base font-semibold m-0">Ritmo dos últimos 6 meses</h3>
+                <div class="text-xs mt-0.5" style="color: var(--text-muted);">Quantidade de conteúdos registrados por mês</div>
+              </div>
+              <span class="g-badge">Base real</span>
+            </div>
+
+            <div class="grid grid-cols-6 gap-3 items-end h-44 pt-4">
+              ${months.map((m) => {
+                const pct = Math.max(4, Math.round((m.count / maxCount) * 100));
+                return `
+                  <div class="flex flex-col items-center justify-end h-full gap-2">
+                    <div class="text-xs font-semibold" style="color: var(--text-primary);">${m.count}</div>
+                    <div class="w-full max-w-[44px] flex-1 flex items-end">
+                      <div class="w-full rounded-t-xl transition-all duration-300 ${m.count > 0 ? 'gemini-bar' : ''}"
+                        style="height: ${m.count > 0 ? pct : 6}%; ${m.count === 0 ? 'background-color: var(--bg-elevated);' : ''}"
+                        title="${m.count} registro(s) · ${formatHours(m.hrs)}h"></div>
+                    </div>
+                    <div class="text-[11px] font-medium capitalize" style="color: var(--text-muted);">${esc(m.label)}</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </section>
+
+          <section class="g-card p-6 lg:col-span-4 flex flex-col justify-between">
+            <div>
+              <h3 class="font-display text-base font-semibold m-0">Saúde das revisões</h3>
+              <p class="text-xs mt-1 m-0" style="color: var(--text-muted);">Resumo da repetição espaçada</p>
+
+              <div class="mt-5 flex flex-col gap-3">
+                <div class="g-card-solid p-3.5 flex items-center justify-between">
+                  <span class="text-xs" style="color: var(--text-secondary);">Itens na fila</span>
+                  <strong class="text-sm">${db.reviews.length}</strong>
+                </div>
+                <div class="g-card-solid p-3.5 flex items-center justify-between">
+                  <span class="text-xs" style="color: var(--text-secondary);">Pendentes hoje</span>
+                  <strong class="text-sm" style="color: ${pendingReviewsCount() ? 'var(--danger)' : 'var(--success)'};">${pendingReviewsCount()}</strong>
+                </div>
+                <div class="g-card-solid p-3.5 flex items-center justify-between">
+                  <span class="text-xs" style="color: var(--text-secondary);">Revisões concluídas</span>
+                  <strong class="text-sm">${reviewsDone}</strong>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="g-btn mt-4 w-full" data-go="reviews">Ir para revisões</button>
+          </section>
+        </div>
+
+        <!-- Distribuição por Categoria e Nível JLPT -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <section class="g-card p-6">
+            <h3 class="font-display text-base font-semibold mb-4 m-0">Progresso por categoria</h3>
+            <div class="flex flex-col gap-3.5">
+              ${cats.map((cat) => {
+                const count = db.records.filter((r) => r.category === cat).length;
+                const pct = db.records.length ? Math.round((count / db.records.length) * 100) : 0;
+                return `
+                  <div class="flex items-center gap-3">
+                    <span class="w-24 text-xs font-medium shrink-0" style="color: var(--text-secondary);">${cat}</span>
+                    <div class="flex-1 h-2.5 rounded-full overflow-hidden" style="background-color: var(--bg-elevated);">
+                      <div class="h-full rounded-full" style="width: ${pct}%; background-color: var(--accent);"></div>
+                    </div>
+                    <span class="w-16 text-right text-xs font-semibold">${count} <span class="font-normal" style="color: var(--text-muted);">(${pct}%)</span></span>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </section>
+
+          <section class="g-card p-6">
+            <h3 class="font-display text-base font-semibold mb-4 m-0">Evolução por nível JLPT</h3>
+            <div class="flex flex-col gap-3.5">
+              ${levels.map((lvl) => {
+                const count = db.records.filter((r) => r.level === lvl).length;
+                const tasksDone = db.tasks.filter((t) => t.level === lvl && t.status === 'Concluída').length;
+                const pct = db.records.length ? Math.round((count / db.records.length) * 100) : 0;
+                return `
+                  <div class="flex items-center gap-3">
+                    <span class="w-10 text-xs font-bold shrink-0">${lvl}</span>
+                    <div class="flex-1 h-2.5 rounded-full overflow-hidden" style="background-color: var(--bg-elevated);">
+                      <div class="h-full rounded-full gemini-bar" style="width: ${pct}%;"></div>
+                    </div>
+                    <span class="w-28 text-right text-xs" style="color: var(--text-muted);">
+                      <strong style="color: var(--text-primary);">${count}</strong> reg · ${tasksDone} tar
+                    </span>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+            <p class="text-[11px] mt-4 mb-0" style="color: var(--text-muted);">
+              Todos os indicadores refletem exclusivamente seus dados salvos e não substituem simulados oficiais do JLPT.
+            </p>
+          </section>
+        </div>
+      `;
+    }
+
+    /* -----------------------------------------------------------------------
+       9. SISTEMA DE MODAIS (VALORES PADRÃO CORRETOS + AUTO-REVISÃO + META)
+       ----------------------------------------------------------------------- */
+    const MODAL_CONFIG = {
+      task: {
+        collection: 'tasks',
+        label: 'atividade planejada',
+        defaults: () => ({
+          date: today(),
+          category: 'Estudo',
+          level: db.settings.currentLevel && db.settings.currentLevel !== 'Iniciante' ? db.settings.currentLevel : 'N5',
+          status: 'Planejada'
+        }),
+        fields: [
+          ['title', 'Título', 'text', true],
+          ['date', 'Data planejada', 'date', true],
+          ['category', 'Categoria', 'select:Estudo|Gramática|Vocabulário|Kanji|Listening|Reading|Escrita|Revisão|Outro'],
+          ['level', 'Nível JLPT', 'select:Todos|N5|N4|N3|N2|N1'],
+          ['status', 'Status', 'select:Planejada|Em andamento|Concluída|Adiada'],
+          ['url', 'Link ou material associado', 'text'],
+          ['description', 'Descrição', 'textarea'],
+          ['notes', 'Observações', 'textarea']
+        ]
+      },
+      record: {
+        collection: 'records',
+        label: 'registro de estudo',
+        defaults: () => ({
+          date: today(),
+          category: 'Gramática',
+          level: db.settings.currentLevel && db.settings.currentLevel !== 'Iniciante' ? db.settings.currentLevel : 'N5',
+          rating: 'Em desenvolvimento'
+        }),
+        fields: [
+          ['title', 'Título do conteúdo', 'text', true],
+          ['date', 'Data do estudo', 'date', true],
+          ['category', 'Categoria', 'select:Gramática|Vocabulário|Kanji|Listening|Reading|Escrita'],
+          ['level', 'Nível JLPT', 'select:N5|N4|N3|N2|N1|Todos'],
+          ['hours', 'Horas estudadas (ex.: 1.5)', 'number'],
+          ['rating', 'Avaliação pessoal', 'select:Começando|Em desenvolvimento|Compreendi|Domino'],
+          ['content', 'Conteúdo estudado', 'textarea'],
+          ['examples', 'Exemplos em japonês', 'textarea'],
+          ['translations', 'Traduções', 'textarea'],
+          ['links', 'Links e arquivos relacionados', 'textarea'],
+          ['difficulties', 'Dificuldades encontradas', 'textarea']
+        ]
+      },
+      resource: {
+        collection: 'resources',
+        label: 'recurso da biblioteca',
+        defaults: () => ({
+          category: 'Site',
+          level: 'Todos'
+        }),
+        fields: [
+          ['title', 'Título', 'text', true],
+          ['category', 'Categoria', 'select:Site|Vídeo|Documento|PDF|Arquivo|Dicionário|Curso|Ferramenta|Material|Outro'],
+          ['level', 'Nível JLPT', 'select:Todos|N5|N4|N3|N2|N1'],
+          ['url', 'Endereço (URL) ou referência de arquivo', 'text'],
+          ['description', 'Descrição', 'textarea']
+        ]
+      },
+      review: {
+        collection: 'reviews',
+        label: 'item de revisão',
+        defaults: () => ({
+          category: 'Gramática',
+          level: db.settings.currentLevel && db.settings.currentLevel !== 'Iniciante' ? db.settings.currentLevel : 'N5',
+          next: today()
+        }),
+        fields: [
+          ['title', 'Nome / Pergunta (frente do cartão)', 'text', true],
+          ['next', 'Próxima revisão', 'date', true],
+          ['category', 'Categoria', 'select:Gramática|Vocabulário|Kanji|Listening|Reading|Escrita|Outro'],
+          ['level', 'Nível JLPT', 'select:Todos|N5|N4|N3|N2|N1'],
+          ['content', 'Conteúdo / Resposta (verso do cartão)', 'textarea']
+        ]
+      }
+    };
+
+    function buildReviewContentFromRecord(rec) {
+      const parts = [];
+      if (rec.content) parts.push(rec.content.trim());
+      if (rec.examples) parts.push(`Exemplos:\n${rec.examples.trim()}`);
+      if (rec.translations) parts.push(`Traduções:\n${rec.translations.trim()}`);
+      return parts.join('\n\n');
+    }
+
+    function openModal(type, id = null, extra = {}) {
+      state.modalType = type;
+      state.editingId = id;
+
+      // Modal especial: Configuração de Meta JLPT
+      if (type === 'settings') {
+        $('#modalTitle').textContent = 'Nível atual e meta JLPT';
+        $('#modalDeleteBtn').classList.add('hidden');
+        $('#modalSubmitBtn').textContent = 'Salvar meta';
+        $('#modalBody').innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-medium mb-1.5" style="color: var(--text-secondary);">Nível atual</label>
+              <select name="currentLevel" class="g-select">
+                ${['Iniciante', 'N5', 'N4', 'N3', 'N2', 'N1'].map((l) => `<option ${db.settings.currentLevel === l ? 'selected' : ''}>${l}</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1.5" style="color: var(--text-secondary);">Nível pretendido (meta)</label>
+              <select name="targetLevel" class="g-select">
+                ${['N5', 'N4', 'N3', 'N2', 'N1'].map((l) => `<option ${(db.settings.targetLevel || 'N2') === l ? 'selected' : ''}>${l}</option>`).join('')}
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-medium mb-1.5" style="color: var(--text-secondary);">Prazo / horizonte da meta</label>
+              <input type="text" name="targetLabel" class="g-input" placeholder="Ex.: dez/2027" value="${esc(db.settings.targetLabel || 'dez/2027')}">
+            </div>
+          </div>
+        `;
+        $('#modalBackdrop').classList.add('open');
+        return;
+      }
+
+      // Modal especial: Reagendar Tarefa
+      if (type === 'reschedule') {
+        const task = db.tasks.find((t) => t.id === id);
+        if (!task) return;
+        $('#modalTitle').textContent = 'Reagendar atividade';
+        $('#modalDeleteBtn').classList.add('hidden');
+        $('#modalSubmitBtn').textContent = 'Aplicar nova data';
+        $('#modalBody').innerHTML = `
+          <div class="flex flex-col gap-4">
+            <div class="text-sm font-medium">${esc(task.title)}</div>
+            <div>
+              <label class="block text-xs font-medium mb-1.5" style="color: var(--text-secondary);">Nova data planejada *</label>
+              <input type="date" name="date" required class="g-input" value="${esc(task.date || today())}">
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" class="filter-pill" data-quick-date="${today()}">Hoje</button>
+              <button type="button" class="filter-pill" data-quick-date="${addDaysISO(today(), 1)}">Amanhã</button>
+              <button type="button" class="filter-pill" data-quick-date="${addDaysISO(today(), 3)}">+3 dias</button>
+              <button type="button" class="filter-pill" data-quick-date="${addDaysISO(today(), 7)}">+1 semana</button>
+            </div>
+          </div>
+        `;
+        $('#modalBackdrop').classList.add('open');
+        return;
+      }
+
+      const cfg = MODAL_CONFIG[type];
+      if (!cfg) return;
+
+      const existing = id ? db[cfg.collection].find((item) => item.id === id) || {} : {};
+      const values = { ...cfg.defaults(), ...existing, ...extra };
+
+      $('#modalTitle').textContent = (id ? 'Editar ' : 'Novo ') + cfg.label;
+      $('#modalDeleteBtn').classList.toggle('hidden', !id);
+      $('#modalSubmitBtn').textContent = 'Salvar';
+
+      const fieldsHTML = cfg.fields.map(([key, label, kind, req]) => {
+        const val = values[key] ?? '';
+        let control = '';
+        if (kind.startsWith('select:')) {
+          const opts = kind.slice(7).split('|');
+          control = `<select name="${key}" class="g-select" ${req ? 'required' : ''}>${opts.map((o) => `<option ${o === val ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select>`;
+        } else if (kind === 'textarea') {
+          control = `<textarea name="${key}" rows="3" class="g-textarea">${esc(val)}</textarea>`;
+        } else {
+          control = `<input type="${kind}" name="${key}" class="g-input" value="${esc(val)}" ${req ? 'required' : ''} ${kind === 'number' ? 'min="0" step="0.25"' : ''}>`;
+        }
+        return `
+          <div class="${kind === 'textarea' ? 'sm:col-span-2' : ''}">
+            <label class="block text-xs font-medium mb-1.5" style="color: var(--text-secondary);">${esc(label)}${req ? ' *' : ''}</label>
+            ${control}
+          </div>
+        `;
+      }).join('');
+
+      let extraBlock = '';
+
+      // Checkbox real de envio automático para revisão espaçada nos Registros
+      if (type === 'record') {
+        const alreadyInReview = id ? db.reviews.some((rv) => rv.sourceId === id) : false;
+        extraBlock = `
+          <div class="sm:col-span-2 mt-1 p-3.5 rounded-2xl flex items-start gap-3" style="background-color: var(--bg-card); border: 1px solid var(--border);">
+            <input type="checkbox" id="autoReviewCheck" name="addToReview" class="mt-0.5 w-4 h-4 accent-[var(--accent)]" ${alreadyInReview ? 'disabled checked' : (!id ? 'checked' : '')}>
+            <label for="autoReviewCheck" class="text-xs leading-relaxed cursor-pointer m-0" style="color: var(--text-secondary);">
+              <strong style="color: var(--text-primary);">${alreadyInReview ? 'Este conteúdo já está na fila de revisão espaçada' : 'Adicionar automaticamente às revisões espaçadas'}</strong>
+              <span class="block mt-0.5" style="color: var(--text-muted);">Cria um cartão de revisão com o conteúdo, exemplos e traduções para reforço de memória.</span>
+            </label>
+          </div>
+        `;
+      }
+
+      // Histórico de revisões dentro do modal de Edição de Revisão
+      if (type === 'review' && id) {
+        const hist = existing.history || [];
+        extraBlock = `
+          <div class="sm:col-span-2 mt-1 p-4 rounded-2xl" style="background-color: var(--bg-card); border: 1px solid var(--border);">
+            <div class="text-xs font-semibold mb-2" style="color: var(--text-primary);">Histórico de revisões (${hist.length})</div>
+            ${hist.length ? `
+              <div class="flex flex-col gap-1.5 max-h-36 overflow-y-auto">
+                ${[...hist].reverse().map((h) => `
+                  <div class="flex items-center justify-between text-xs py-1 border-b last:border-0" style="border-color: var(--border); color: var(--text-secondary);">
+                    <span>${formatBR(h.date)} · <strong>${esc(h.rating)}</strong></span>
+                    <span style="color: var(--text-muted);">+${h.interval} ${h.interval === 1 ? 'dia' : 'dias'}</span>
+                  </div>
+                `).join('')}
+              </div>
+            ` : `<div class="text-xs" style="color: var(--text-muted);">Nenhuma revisão realizada ainda.</div>`}
+          </div>
+        `;
+      }
+
+      $('#modalBody').innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">${fieldsHTML}${extraBlock}</div>`;
+      $('#modalBackdrop').classList.add('open');
+    }
+
+    function closeModal() {
+      $('#modalBackdrop').classList.remove('open');
+      state.modalType = null;
+      state.editingId = null;
+    }
+
+    /* -----------------------------------------------------------------------
+       10. AÇÕES DE DADOS (SALVAR, EXCLUIR, REVISAR, BACKUP JSON)
+       ----------------------------------------------------------------------- */
+    function handleModalSubmit(e) {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const data = Object.fromEntries(fd.entries());
+
+      if (state.modalType === 'settings') {
+        db.settings.currentLevel = data.currentLevel || 'Iniciante';
+        db.settings.targetLevel = data.targetLevel || 'N2';
+        db.settings.targetLabel = (data.targetLabel || 'dez/2027').trim();
+        save();
+        closeModal();
+        render();
+        showToast('Meta e nível atual atualizados.', 'success');
+        return;
+      }
+
+      if (state.modalType === 'reschedule') {
+        const task = db.tasks.find((t) => t.id === state.editingId);
+        if (task && data.date) {
+          task.date = data.date;
+          save();
+          closeModal();
+          render();
+          showToast(`Atividade reagendada para ${formatBR(data.date)}.`, 'success');
+        }
+        return;
+      }
+
+      const cfg = MODAL_CONFIG[state.modalType];
+      if (!cfg) return;
+
+      const addToReview = fd.has('addToReview');
+      delete data.addToReview;
+
+      if (state.modalType === 'record') {
+        data.hours = roundHours(data.hours);
+      }
+
+      const list = db[cfg.collection];
+      let savedItem;
+
+      if (state.editingId) {
+        const idx = list.findIndex((x) => x.id === state.editingId);
+        if (idx !== -1) {
+          list[idx] = { ...list[idx], ...data };
+          savedItem = list[idx];
+        }
+      } else {
+        savedItem = { id: uid(), ...data };
+        if (state.modalType === 'review') {
+          savedItem.created = today();
+          savedItem.history = [];
+          savedItem.interval = 0;
+          savedItem.difficulty = '';
+        }
+        list.push(savedItem);
+      }
+
+      // Envio automático do Registro de Estudo para a Revisão Espaçada
+      if (state.modalType === 'record' && addToReview && savedItem) {
+        const exists = db.reviews.some((rv) => rv.sourceId === savedItem.id);
+        if (!exists) {
+          db.reviews.push({
+            id: uid(),
+            sourceId: savedItem.id,
+            title: savedItem.title,
+            category: savedItem.category,
+            level: savedItem.level,
+            content: buildReviewContentFromRecord(savedItem),
+            created: today(),
+            next: today(),
+            interval: 0,
+            difficulty: '',
+            history: []
+          });
+        }
+      }
+
+      save();
+      closeModal();
+      render();
+      showToast(state.editingId ? 'Alterações salvas.' : 'Item salvo com sucesso.', 'success');
+    }
+
+    async function handleModalDelete() {
+      if (!state.editingId || !MODAL_CONFIG[state.modalType]) return;
+      const cfg = MODAL_CONFIG[state.modalType];
+      const ok = await showConfirm({
+        title: 'Excluir item',
+        message: `Tem certeza que deseja excluir este ${cfg.label}? Esta ação não pode ser desfeita.`,
+        confirmText: 'Excluir',
+        danger: true
+      });
+      if (!ok) return;
+
+      db[cfg.collection] = db[cfg.collection].filter((item) => item.id !== state.editingId);
+      save();
+      closeModal();
+      render();
+      showToast('Item excluído.', 'info');
+    }
+
+    function sendRecordToReview(recordId) {
+      const rec = db.records.find((r) => r.id === recordId);
+      if (!rec) return;
+      if (db.reviews.some((rv) => rv.sourceId === rec.id)) {
+        showToast('Este registro já está na sua fila de revisão.', 'info');
+        return;
+      }
+      db.reviews.push({
+        id: uid(),
+        sourceId: rec.id,
+        title: rec.title,
+        category: rec.category,
+        level: rec.level,
+        content: buildReviewContentFromRecord(rec),
+        created: today(),
+        next: today(),
+        interval: 0,
+        difficulty: '',
+        history: []
+      });
+      save();
+      render();
+      showToast('Conteúdo adicionado às revisões de hoje.', 'success');
+    }
+
+    function rateReview(reviewId, rating) {
+      const rv = db.reviews.find((r) => r.id === reviewId);
+      if (!rv) return;
+      const nextDays = computeNextInterval(rv, rating);
+      const nextDate = addDaysISO(today(), nextDays);
+
+      rv.interval = nextDays;
+      rv.next = nextDate;
+      rv.difficulty = rating;
+      rv.history = Array.isArray(rv.history) ? rv.history : [];
+      rv.history.push({ date: today(), rating, interval: nextDays });
+
+      state.revealedReviews.delete(reviewId);
+      save();
+      render();
+      showToast(`Revisão registrada! Próxima em ${formatBR(nextDate)} (+${nextDays}d).`, 'success');
+    }
+
+    function exportBackup() {
+      const payload = JSON.stringify(db, null, 2);
+      const blob = new Blob([payload], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `backup-japones-2027-${today()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showToast('Backup JSON exportado com sucesso.', 'success');
+    }
+
+    function importBackup(file) {
+      const reader = new FileReader();
+      reader.onload = async () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          if (!parsed || !Array.isArray(parsed.tasks) || !Array.isArray(parsed.records) || !Array.isArray(parsed.reviews)) {
+            throw new Error('Estrutura incompatível');
+          }
+          const ok = await showConfirm({
+            title: 'Importar backup JSON',
+            message: 'A importação substituirá os dados atuais deste navegador pelos dados do arquivo selecionado. Deseja continuar?',
+            confirmText: 'Importar dados'
+          });
+          if (!ok) return;
+
+          db = migrateData(parsed);
+          applyTheme(db.settings.theme);
+          save();
+          render();
+          showToast('Backup importado e aplicado com sucesso.', 'success');
+        } catch {
+          showToast('Arquivo JSON inválido ou incompatível.', 'error');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    /* -----------------------------------------------------------------------
+       11. EVENT LISTENERS GLOBAIS E DELEGADOS
+       ----------------------------------------------------------------------- */
+    // Navegação Sidebar e Mobile
+    $('#sidebarNav').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-page]');
+      if (btn) setPage(btn.dataset.page);
+    });
+
+    $('#mobileBottomNav').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-page]');
+      if (btn) setPage(btn.dataset.page);
+    });
+
+    $('#openDrawerBtn').addEventListener('click', openDrawer);
+    $('#mobileMoreBtn').addEventListener('click', openDrawer);
+    $('#closeDrawerBtn').addEventListener('click', closeDrawer);
+    $('#drawerBackdrop').addEventListener('click', closeDrawer);
+
+    // Ações globais do topo e sidebar
+    $('#sidebarNewStudy').addEventListener('click', () => { closeDrawer(); openModal('record'); });
+    $('#headerNewStudy').addEventListener('click', () => openModal('record'));
+    $('#mobileFab').addEventListener('click', () => openModal('record'));
+    $('#themeBtn').addEventListener('click', toggleTheme);
+    $('#backupSideBtn').addEventListener('click', exportBackup);
+    $('#backupTopBtn').addEventListener('click', exportBackup);
+    $('#importBtn').addEventListener('click', () => $('#importFileInput').click());
+    $('#importFileInput').addEventListener('change', (e) => {
+      if (e.target.files?.[0]) importBackup(e.target.files[0]);
+      e.target.value = '';
+    });
+
+    // Marca clicável volta ao Dashboard
+    $('#sidebar').addEventListener('click', (e) => {
+      const go = e.target.closest('[data-go]');
+      if (go) setPage(go.dataset.go);
+    });
+
+    // Modal Form & Backdrop
+    $('#modalCloseBtn').addEventListener('click', closeModal);
+    $('#modalCancelBtn').addEventListener('click', closeModal);
+    $('#modalDeleteBtn').addEventListener('click', handleModalDelete);
+    $('#modalForm').addEventListener('submit', handleModalSubmit);
+    $('#modalBackdrop').addEventListener('click', (e) => {
+      if (e.target === $('#modalBackdrop')) closeModal();
+    });
+
+    // Atalhos rápidos de data dentro do modal de reagendamento
+    $('#modalBody').addEventListener('click', (e) => {
+      const qd = e.target.closest('[data-quick-date]');
+      if (qd) {
+        const input = $('#modalBody input[name="date"]');
+        if (input) input.value = qd.dataset.quickDate;
+      }
+    });
+
+    // Modal de Confirmação
+    $('#confirmCancelBtn').addEventListener('click', () => closeConfirm(false));
+    $('#confirmOkBtn').addEventListener('click', () => closeConfirm(true));
+    $('#confirmBackdrop').addEventListener('click', (e) => {
+      if (e.target === $('#confirmBackdrop')) closeConfirm(false);
+    });
+
+    // Tecla Escape fecha modais ou drawer
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if ($('#confirmBackdrop').classList.contains('open')) closeConfirm(false);
+      else if ($('#modalBackdrop').classList.contains('open')) closeModal();
+      else closeDrawer();
+    });
+
+    // Delegação de Cliques na Área Principal (#content)
+    $('#content').addEventListener('click', (e) => {
+      const target = e.target.closest('button, [data-go], [data-cal-day]');
+      if (!target) return;
+
+      if (target.dataset.go) { setPage(target.dataset.go); return; }
+
+      if (target.dataset.action) {
+        const map = {
+          'new-record': 'record',
+          'new-task': 'task',
+          'new-resource': 'resource',
+          'new-review': 'review',
+          'edit-goal': 'settings'
+        };
+        const type = map[target.dataset.action];
+        if (type) openModal(type, null, type === 'task' && state.selectedDay ? { date: state.selectedDay } : {});
+        return;
+      }
+
+      if (target.dataset.doneTask) {
+        const t = db.tasks.find((x) => x.id === target.dataset.doneTask);
+        if (t) { t.status = 'Concluída'; save(); render(); showToast('Atividade concluída!', 'success'); }
+        return;
+      }
+
+      if (target.dataset.toggleTask) {
+        const t = db.tasks.find((x) => x.id === target.dataset.toggleTask);
+        if (t) {
+          t.status = t.status === 'Concluída' ? 'Planejada' : 'Concluída';
+          save();
+          render();
+          showToast(t.status === 'Concluída' ? 'Atividade concluída!' : 'Atividade reaberta.', 'info');
+        }
+        return;
+      }
+
+      if (target.dataset.reschedulePlus) {
+        const t = db.tasks.find((x) => x.id === target.dataset.reschedulePlus);
+        if (t) {
+          t.date = addDaysISO(t.date || today(), 1);
+          save();
+          render();
+          showToast(`Reagendada para ${formatBR(t.date)}.`, 'success');
+        }
+        return;
+      }
+
+      if (target.dataset.reschedulePick) {
+        openModal('reschedule', target.dataset.reschedulePick);
+        return;
+      }
+
+      if (target.dataset.editTask) { openModal('task', target.dataset.editTask); return; }
+      if (target.dataset.editRecord) { openModal('record', target.dataset.editRecord); return; }
+      if (target.dataset.editResource) { openModal('resource', target.dataset.editResource); return; }
+      if (target.dataset.editReview) { openModal('review', target.dataset.editReview); return; }
+
+      if (target.dataset.sendReview) { sendRecordToReview(target.dataset.sendReview); return; }
+
+      if (target.dataset.revealReview) {
+        state.revealedReviews.add(target.dataset.revealReview);
+        render();
+        return;
+      }
+
+      if (target.dataset.rateReview) {
+        rateReview(target.dataset.rateReview, target.dataset.rating);
+        return;
+      }
+
+      // Navegação do Calendário (ancorada no dia 1)
+      if (target.dataset.calNav) {
+        if (target.dataset.calNav === 'today') {
+          const n = new Date();
+          state.calDate = new Date(n.getFullYear(), n.getMonth(), 1);
+          state.selectedDay = today();
+        } else {
+          const delta = Number(target.dataset.calNav);
+          state.calDate = new Date(state.calDate.getFullYear(), state.calDate.getMonth() + delta, 1);
+        }
+        render();
+        return;
+      }
+
+      if (target.dataset.calDay) {
+        state.selectedDay = state.selectedDay === target.dataset.calDay ? null : target.dataset.calDay;
+        if (state.selectedDay) {
+          const dt = parseLocalISO(state.selectedDay);
+          if (dt) state.calDate = new Date(dt.getFullYear(), dt.getMonth(), 1);
+        }
+        render();
+        return;
+      }
+
+      if (target.dataset.clearDay) {
+        state.selectedDay = null;
+        if (state.plannerPeriod === 'day') state.plannerPeriod = 'all';
+        render();
+        return;
+      }
+
+      if (target.dataset.addTaskDate) {
+        openModal('task', null, { date: target.dataset.addTaskDate });
+        return;
+      }
+
+      if (target.dataset.plannerPeriod) {
+        state.plannerPeriod = target.dataset.plannerPeriod;
+        if (state.plannerPeriod !== 'day' && state.plannerPeriod !== 'all') {
+          state.selectedDay = null;
+        }
+        render();
+        return;
+      }
+
+      if (target.dataset.fluencyFilter) {
+        state.fluencyFilter = target.dataset.fluencyFilter;
+        render();
+        return;
+      }
+    });
+
+    // Delegação de Inputs em Tempo Real (Filtros + Salvamento Instantâneo Fluency Academy)
+    $('#content').addEventListener('input', (e) => {
+      const el = e.target;
+
+      // Salvamento em tempo real nos 24 módulos da Fluency Academy (sem perder o foco!)
+      if (el.dataset.modField && el.dataset.modId) {
+        const mod = db.modules.find((m) => m.id === Number(el.dataset.modId));
+        if (mod) {
+          mod[el.dataset.modField] = el.value;
+          save();
+        }
+        return;
+      }
+
+      // Filtros do Cronograma
+      if (el.id === 'taskSearchInput') {
+        state.plannerSearch = el.value;
+        $('#taskListContainer').innerHTML = renderTaskListHTML(filterTasks());
+        return;
+      }
+
+      // Filtros de Registros
+      if (el.id === 'recordSearchInput') {
+        state.recordSearch = el.value;
+        $('#recordListContainer').innerHTML = renderRecordListHTML(filterRecords());
+        return;
+      }
+
+      // Filtro de Revisões
+      if (el.id === 'reviewSearchInput') {
+        state.reviewSearch = el.value;
+        const q = state.reviewSearch.trim().toLowerCase();
+        const filtered = db.reviews
+          .filter((r) => !q || `${r.title || ''} ${r.category || ''} ${r.content || ''}`.toLowerCase().includes(q))
+          .sort((a, b) => (a.next || '').localeCompare(b.next || ''));
+        $('#allReviewsList').innerHTML = renderAllReviewsHTML(filtered);
+        return;
+      }
+
+      // Filtro de Biblioteca
+      if (el.id === 'libSearchInput') {
+        state.libSearch = el.value;
+        $('#libListContainer').innerHTML = renderResourceListHTML(filterResources());
+        return;
+      }
+
+      // Filtro de Módulos Fluency Academy
+      if (el.id === 'fluencySearchInput') {
+        state.fluencySearch = el.value;
+        const pos = el.selectionStart;
+        render();
+        const reInput = $('#fluencySearchInput');
+        if (reInput) { reInput.focus(); reInput.setSelectionRange(pos, pos); }
+        return;
+      }
+    });
+
+    // Delegação de Change (Selects e Date Inputs)
+    $('#content').addEventListener('change', (e) => {
+      const el = e.target;
+
+      // Status e Data nos Módulos da Fluency Academy
+      if (el.dataset.modField && el.dataset.modId) {
+        const mod = db.modules.find((m) => m.id === Number(el.dataset.modId));
+        if (!mod) return;
+        mod[el.dataset.modField] = el.value;
+        save();
+
+        if (el.dataset.modField === 'status') {
+          // Atualiza barra de progresso e badge dinamicamente
+          const done = completedModulesCount();
+          const pct = Math.round((done / 24) * 100);
+          const bar = $('#fluencyProgressBar');
+          const countEl = $('#fluencyProgressCount');
+          if (bar) bar.style.width = `${pct}%`;
+          if (countEl) countEl.textContent = `${done}/24 concluídos (${pct}%)`;
+
+          const badge = $(`[data-module-badge="${mod.id}"]`);
+          if (badge) {
+            badge.textContent = mod.status;
+            badge.className = 'g-badge ' + (mod.status === 'Concluído' ? 'g-badge-success' : mod.status === 'Em andamento' ? 'g-badge-accent' : '');
+          }
+          if (state.fluencyFilter !== 'all') render();
+        }
+        return;
+      }
+
+      if (el.id === 'taskStatusSelect') {
+        state.plannerStatus = el.value;
+        $('#taskListContainer').innerHTML = renderTaskListHTML(filterTasks());
+        return;
+      }
+      if (el.id === 'taskLevelSelect') {
+        state.plannerLevel = el.value;
+        $('#taskListContainer').innerHTML = renderTaskListHTML(filterTasks());
+        return;
+      }
+      if (el.id === 'recordCatSelect') {
+        state.recordCat = el.value;
+        $('#recordListContainer').innerHTML = renderRecordListHTML(filterRecords());
+        return;
+      }
+      if (el.id === 'recordLevelSelect') {
+        state.recordLevel = el.value;
+        $('#recordListContainer').innerHTML = renderRecordListHTML(filterRecords());
+        return;
+      }
+      if (el.id === 'libCatSelect') {
+        state.libCat = el.value;
+        $('#libListContainer').innerHTML = renderResourceListHTML(filterResources());
+        return;
+      }
+      if (el.id === 'libLevelSelect') {
+        state.libLevel = el.value;
+        $('#libListContainer').innerHTML = renderResourceListHTML(filterResources());
+        return;
+      }
+    });
+
+    /* -----------------------------------------------------------------------
+       12. INICIALIZAÇÃO
+       ----------------------------------------------------------------------- */
+    applyTheme(db.settings.theme || 'light');
+    setPage('dashboard');
+  })();
+  </script>
+</body>
+</html>
